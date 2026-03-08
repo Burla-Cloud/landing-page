@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #eef3ff;
+  --color-background-muted: #f7f9ff;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f7ff;
+  --color-surface-strong: #0a2540;
+  --color-border: #d8e1f0;
+  --color-ink-strong: #0a2540;
+  --color-ink-muted: #425466;
+  --color-accent: #635bff;
+  --color-accent-alt: #0a2540;
+  --shadow-panel: 0 28px 60px -36px rgba(15, 23, 42, 0.45);
+  --shadow-floating: 0 18px 45px -28px rgba(2, 12, 37, 0.48);
+}
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply antialiased;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: var(--color-ink-strong);
+    background-color: var(--color-background);
+    background-image: radial-gradient(
+        circle at 6% -8%,
+        rgba(99, 91, 255, 0.22),
+        transparent 40%
+      ),
+      radial-gradient(circle at 92% 10%, rgba(10, 37, 64, 0.12), transparent 36%),
+      linear-gradient(180deg, #f9fbff 0%, #eef3ff 52%, #f9fbff 100%);
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Manrope", "Plus Jakarta Sans", sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .surface-panel {
+    @apply rounded-[28px] border;
+    border-color: var(--color-border);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow-panel);
+  }
+
+  .surface-soft {
+    @apply rounded-[24px] border;
+    border-color: var(--color-border);
+    background: rgba(244, 247, 255, 0.88);
+    box-shadow: var(--shadow-floating);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
