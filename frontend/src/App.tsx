@@ -1,6 +1,5 @@
 import { useState } from "react";
 import logoImageUrl from "./assets/logo.svg";
-import logoSmallImageUrl from "./assets/logo_small.svg";
 
 const homeScreenshotUrl =
   "https://docs.burla.dev/~gitbook/image?url=https%3A%2F%2F960315508-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FEZK1GDkJ4Bar9hojneh3%252Fuploads%252FBSeJSsAiri3jm8dS0HYu%252FCleanShot%25202026-01-18%2520at%252015.07.24.png%3Falt%3Dmedia%26token%3Dcef8f0ad-808d-456e-b956-dd67a40c8bd9&width=768&dpr=3&quality=100&sign=82fb9eab&sv=2";
@@ -96,17 +95,12 @@ export default function App() {
               href="https://docs.burla.dev/"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2"
+              className="flex items-center"
             >
-              <img
-                src={logoSmallImageUrl}
-                alt="Burla logo"
-                className="h-8 w-8"
-              />
               <img
                 src={logoImageUrl}
                 alt="Burla"
-                className="h-6 w-auto"
+                className="h-8 w-auto"
               />
             </a>
             <nav className="hidden items-center gap-2 xl:flex">
