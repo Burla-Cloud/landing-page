@@ -50,6 +50,8 @@ jobs:
         env:
           SITE_URL: https://burla-cloud.github.io
           SITE_BASE_PATH: /landing-page
+          USER_DOCS_PATH: ../user-docs
+          USER_DOCS_SUMMARY_PATH: ${{ github.workspace }}/user-docs/SUMMARY.md
         run: npm run build
 
       - name: Upload Pages artifact
