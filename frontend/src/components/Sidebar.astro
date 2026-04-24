@@ -1,0 +1,61 @@
+---
+import { loadSidebar, type SidebarSection, type SidebarEntry } from "../utils/summary";
+import { withBase } from "../utils/base";
+import Icon from "./Icon.astro";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const sections = loadSidebar();
+
+const HIDDEN_PATHS = new Set([
+  "/security",
+  "/privacy-policy",
+  "/software-as-a-service-agreement",
+  "/website-privacy-policy",
+]);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "") || "";
+
+function isActive(href: string): boolean {
+  const full = href === "/" ? base + "/" : base + href;
+  if (href === "/") return currentPath === "/" || currentPath === "" || currentPath === base + "/" || currentPath === base;
+  return currentPath === full || currentPath === full + "/";
+}
+
+function visibleEntries(entries: SidebarEntry[]): SidebarEntry[] {
+  return entries.filter((e) => e.kind === "group" || !HIDDEN_PATHS.has(e.href));
+}
+---
+
+<aside class="sidebar" aria-label="Documentation navigation">
+  <nav class="sidebar__inner">
+    {sections.map((section: SidebarSection) => {
+      const entries = visibleEntries(section.entries);
+      if (entries.length === 0) return null;
+      return (
+        <div class="nav-section">
+          {section.heading && (
+            <div class="nav-section__heading">{section.heading}</div>
+          )}
+          <ul class="nav-list">
+            {entries.map((entry) =>
+              entry.kind === "link" ? (
+                <li>
+                  <a
+                    class:list={["nav-item", { "nav-item--active": isActive(entry.href) }]}
+                    href={withBase(entry.href)}
+                  >
+                    {entry.title}
+                  </a>
+                </li>
+              ) : null
+            )}
+          </ul>
+        </div>
+      );
+    })}
+  </nav>
+</aside>

@@ -1,0 +1,39 @@
+---
+import Icon from "./Icon.astro";
+import { withBase } from "../utils/base";
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href={withBase("/")} aria-label="Burla home">
+      <span class="brand__mark" aria-hidden="true">
+        <Icon name="prompt" size={18} />
+      </span>
+      <span class="brand__name">Burla</span>
+    </a>
+
+    <button class="search" type="button" aria-label="Search" disabled>
+      <Icon name="search" size={16} class="search__icon" />
+      <span class="search__text">Search</span>
+      <span class="search__kbd" aria-hidden="true">
+        <kbd>⌘</kbd><kbd>k</kbd>
+      </span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Primary">
+      <a class="ico-link" href="https://github.com/Burla-Cloud/burla" aria-label="GitHub" target="_blank" rel="noopener">
+        <Icon name="github" size={18} />
+        <span>GitHub</span>
+      </a>
+      <a class="ico-link" href="https://discord.gg/TsbCvVYRQV" aria-label="Discord" target="_blank" rel="noopener">
+        <Icon name="discord" size={18} />
+        <span>Discord</span>
+      </a>
+      <a class="text-link" href="https://cal.com/jake-burla/burla" target="_blank" rel="noopener">
+        Book a call
+      </a>
+      <a class="text-link" href="https://login.burla.dev/">Log in</a>
+      <a class="btn btn--primary" href="https://login.burla.dev/">Try Now</a>
+    </nav>
+  </div>
+</header>

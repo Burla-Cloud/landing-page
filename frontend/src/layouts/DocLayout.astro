@@ -1,0 +1,68 @@
+---
+import Header from "../components/Header.astro";
+import Sidebar from "../components/Sidebar.astro";
+import { withBase } from "../utils/base";
+import "../styles/reset.css";
+import "../styles/gitbook.css";
+import "../styles/prose.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  hideFirstHeading?: boolean;
+}
+
+const { title, description, hideFirstHeading } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const pageTitle = title === "Home" ? "Burla" : `${title} | Burla`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <Header />
+    <div class="page">
+      <Sidebar currentPath={pathname} />
+      <main class="content">
+        <article class:list={["prose", { "prose--hide-h1": hideFirstHeading }]}>
+          <slot />
+        </article>
+      </main>
+    </div>
+    <script>
+      for (const pre of document.querySelectorAll<HTMLPreElement>("pre.astro-code")) {
+        if (pre.querySelector(".code-copy")) continue;
+        const btn = document.createElement("button");
+        btn.className = "code-copy";
+        btn.type = "button";
+        btn.setAttribute("aria-label", "Copy code");
+        btn.innerHTML = "Copy";
+        btn.addEventListener("click", async () => {
+          const code = pre.querySelector("code");
+          if (!code) return;
+          try {
+            await navigator.clipboard.writeText(code.textContent ?? "");
+            btn.innerHTML = "Copied";
+            setTimeout(() => (btn.innerHTML = "Copy"), 1400);
+          } catch {
+            btn.innerHTML = "Error";
+          }
+        });
+        pre.appendChild(btn);
+      }
+    </script>
+  </body>
+</html>

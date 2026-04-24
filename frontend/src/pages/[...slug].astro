@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from "astro:content";
+import DocLayout from "../layouts/DocLayout.astro";
+import { idToUrl, urlToSlug } from "../utils/summary";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("docs");
+  return entries
+    .filter((e) => e.id !== "README")
+    .map((entry) => {
+      const slug = urlToSlug(idToUrl(entry.id));
+      return { params: { slug }, props: { entry } };
+    });
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const firstH1 = entry.body?.match(/^#\s+(.+?)\s*$/m)?.[1];
+const firstH2 = entry.body?.match(/^##\s+(.+?)\s*$/m)?.[1];
+const title = firstH1 || firstH2 || entry.id;
+
+const firstPara = entry.body
+  ?.split(/\n\n+/)
+  .find((block) =>
+    block.trim() &&
+    !block.startsWith("#") &&
+    !block.startsWith("---") &&
+    !block.startsWith("{") &&
+    !block.startsWith("<") &&
+    !block.startsWith("```"),
+  );
+const description = firstPara?.trim().replace(/\s+/g, " ").slice(0, 200);
+---
+
+<DocLayout title={title} description={description}>
+  <Content />
+</DocLayout>
