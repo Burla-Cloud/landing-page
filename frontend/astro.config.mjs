@@ -10,11 +10,11 @@ import remarkGitbookAssets from "./src/remark/gitbook-assets.ts";
 import remarkGitbookLinks from "./src/remark/gitbook-links.ts";
 
 
-const BASE_PATH = process.env.SITE_BASE_PATH ?? "/landing-page";
+const BASE_PATH = process.env.SITE_BASE_PATH ?? "";
 
 export default defineConfig({
-  site: process.env.SITE_URL ?? "https://burla-cloud.github.io",
-  base: BASE_PATH,
+  site: process.env.SITE_URL ?? "https://burla.dev",
+  base: BASE_PATH || undefined,
   trailingSlash: "ignore",
   markdown: {
     smartypants: false,

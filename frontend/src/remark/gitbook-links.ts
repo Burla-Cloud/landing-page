@@ -1,12 +1,12 @@
 import { visit } from "unist-util-visit";
 import type { Root, Link, Html } from "mdast";
 
+const BASE = (process.env.SITE_BASE_PATH ?? "").replace(/\/$/, "");
+
 const URL_PREFIX_ALIASES: Array<[RegExp, string]> = [
   [/^general-use-cases\//, "use-cases/"],
   [/^common-patterns\//, "how-to/"],
 ];
-
-const BASE = (process.env.SITE_BASE_PATH ?? "/landing-page").replace(/\/$/, "");
 
 function rewriteTarget(raw: string): string | null {
   if (!raw) return null;

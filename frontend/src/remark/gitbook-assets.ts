@@ -1,7 +1,7 @@
 import { visit } from "unist-util-visit";
 import type { Root, Html, Image } from "mdast";
 
-const BASE = (process.env.SITE_BASE_PATH ?? "/landing-page").replace(/\/$/, "");
+const BASE = (process.env.SITE_BASE_PATH ?? "").replace(/\/$/, "");
 const RAW_HTML_RE = /(src|href)="(?:\.\.\/)*\.gitbook\/assets\//g;
 const MD_PATH_RE = /^(?:\.\.\/)*\.gitbook\/assets\//;
 

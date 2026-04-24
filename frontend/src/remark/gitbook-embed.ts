@@ -63,7 +63,7 @@ function extractEmbedUrl(node: Paragraph): string | null {
   return null;
 }
 
-const BASE = (process.env.SITE_BASE_PATH ?? "/landing-page").replace(/\/$/, "");
+const BASE = (process.env.SITE_BASE_PATH ?? "").replace(/\/$/, "");
 
 function buildCardHtml(url: string): string {
   const title = titleOf(url);
@@ -73,7 +73,7 @@ function buildCardHtml(url: string): string {
   if (isInternal) {
     try {
       const u = new URL(url);
-      href = BASE + u.pathname + u.hash;
+      href = `${BASE}${u.pathname}${u.hash}`;
     } catch {}
   }
   const target = isInternal ? "" : ` target="_blank" rel="noopener"`;
