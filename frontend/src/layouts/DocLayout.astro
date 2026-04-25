@@ -12,9 +12,10 @@ interface Props {
   description?: string;
   hideFirstHeading?: boolean;
   outlineBody?: string;
+  pageHeading?: string;
 }
 
-const { title, description, hideFirstHeading, outlineBody } = Astro.props;
+const { title, description, hideFirstHeading, outlineBody, pageHeading } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const pageTitle = title === "Home" ? "Burla" : `${title} | Burla`;
 const showOutline = !!outlineBody;
@@ -41,6 +42,7 @@ const showOutline = !!outlineBody;
       <Sidebar currentPath={pathname} />
       <main class="content">
         <article class:list={["prose", { "prose--hide-h1": hideFirstHeading }]}>
+          {pageHeading && <h1 class="prose__page-title">{pageHeading}</h1>}
           <slot />
         </article>
       </main>

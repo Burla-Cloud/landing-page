@@ -13,7 +13,7 @@
   line-height: 1.25;
 }
 
-.prose h1 { font-size: 36px; line-height: 40px; letter-spacing: -0.45px; margin: 0; }
+.prose h1, .prose__page-title { font-size: 36px; line-height: 40px; letter-spacing: -0.45px; margin: 0; font-weight: 600; color: var(--fg-primary); }
 .prose h2 { font-size: 30px; line-height: 36px; letter-spacing: -0.375px; margin: 0; }
 .prose h3 { font-size: 24px; line-height: 32px; letter-spacing: -0.3px; margin: 0; }
 .prose h4 { font-size: 18px; line-height: 28px; margin: 0; }
@@ -184,7 +184,6 @@
 /* ── Figures (GitBook renders images as <figure>) ── */
 
 .prose figure {
-  margin: 24px 0;
   text-align: center;
 }
 .prose figure img {
@@ -197,6 +196,28 @@
   margin-top: 8px;
   font-size: 13px;
   color: var(--fg-muted);
+}
+
+/* Multiple figures inside a div = horizontal layout (GitBook columns) */
+.prose div:has(> figure ~ figure) {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.prose div:has(> figure ~ figure) > figure {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Centered single-figure divs */
+.prose div[align="center"] {
+  text-align: center;
+}
+.prose div[align="center"] > figure {
+  display: inline-block;
+  margin: 0 auto;
 }
 
 /* ── Hint callouts (from {% hint %}) ───── */
@@ -322,8 +343,8 @@
 .prose > :first-child { margin-top: 0; }
 .prose > h1:first-child, .prose > h2:first-child, .prose > h3:first-child { margin-top: 0; }
 
-.prose--hide-h1 > h1:first-child { display: none; }
-.prose--hide-h1 > h1:first-child + * { margin-top: 0; }
+.prose--hide-h1 > h1:not(.prose__page-title) { display: none; }
+.prose--hide-h1 > h1:not(.prose__page-title) + * { margin-top: 0; }
 
 /* ── Keyboard shortcut pill ───── */
 .prose kbd {

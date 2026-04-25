@@ -52,6 +52,16 @@ const LINK_RE = /^\s*[-*]\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
 const NESTED_LINK_RE = /^\s{2,}[-*]\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
 const H2_RE = /^##\s+(.+?)\s*$/;
 
+export function loadSidebarTitleByUrl(url: string): string | null {
+  const sections = loadSidebar();
+  for (const section of sections) {
+    for (const entry of section.entries) {
+      if (entry.kind === "link" && entry.href === url) return entry.title;
+    }
+  }
+  return null;
+}
+
 export function loadSidebar(): SidebarSection[] {
   const raw = readFileSync(SUMMARY_PATH, "utf8");
   const lines = raw.split(/\r?\n/);

@@ -27,15 +27,22 @@ let inFence = false;
 for (const line of lines) {
   if (/^```/.test(line.trim())) { inFence = !inFence; continue; }
   if (inFence) continue;
+  const cleanHeading = (raw: string): string =>
+    raw
+      .replace(/`([^`]+)`/g, "$1")
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[*_]/g, "")
+      .trim();
+
   const m2 = /^##\s+(.+?)\s*$/.exec(line);
   if (m2) {
-    const text = m2[1]!.replace(/`([^`]+)`/g, "$1").replace(/[*_]/g, "").trim();
+    const text = cleanHeading(m2[1]!);
     allHeadings.push({ text, slug: slugify(text), depth: 2 });
     continue;
   }
   const m3 = /^###\s+(.+?)\s*$/.exec(line);
   if (m3) {
-    const text = m3[1]!.replace(/`([^`]+)`/g, "$1").replace(/[*_]/g, "").trim();
+    const text = cleanHeading(m3[1]!);
     allHeadings.push({ text, slug: slugify(text), depth: 3 });
   }
 }
