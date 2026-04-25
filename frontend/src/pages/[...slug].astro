@@ -33,6 +33,6 @@ const firstPara = entry.body
 const description = firstPara?.trim().replace(/\s+/g, " ").slice(0, 200);
 ---
 
-<DocLayout title={title} description={description}>
+<DocLayout title={title} description={description} outlineBody={entry.body}>
   <Content />
 </DocLayout>

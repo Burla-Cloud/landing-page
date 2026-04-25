@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
+import PageOutline from "../components/PageOutline.astro";
 import { withBase } from "../utils/base";
 import "../styles/reset.css";
 import "../styles/gitbook.css";
@@ -10,11 +11,13 @@ interface Props {
   title: string;
   description?: string;
   hideFirstHeading?: boolean;
+  outlineBody?: string;
 }
 
-const { title, description, hideFirstHeading } = Astro.props;
+const { title, description, hideFirstHeading, outlineBody } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const pageTitle = title === "Home" ? "Burla" : `${title} | Burla`;
+const showOutline = !!outlineBody;
 ---
 
 <!doctype html>
@@ -34,13 +37,14 @@ const pageTitle = title === "Home" ? "Burla" : `${title} | Burla`;
   </head>
   <body>
     <Header />
-    <div class="page">
+    <div class:list={["page", { "page--with-outline": showOutline }]}>
       <Sidebar currentPath={pathname} />
       <main class="content">
         <article class:list={["prose", { "prose--hide-h1": hideFirstHeading }]}>
           <slot />
         </article>
       </main>
+      {showOutline && <PageOutline body={outlineBody!} />}
     </div>
     <script>
       for (const pre of document.querySelectorAll<HTMLPreElement>("pre.astro-code")) {

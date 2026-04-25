@@ -13,14 +13,17 @@
   line-height: 1.25;
 }
 
-.prose h1 { font-size: 36px; margin: 0 0 16px; }
-.prose h2 { font-size: 30px; margin: 56px 0 16px; line-height: 1.2; }
-.prose h3 { font-size: 22px; margin: 40px 0 12px; }
-.prose h4 { font-size: 18px; margin: 32px 0 8px; }
-.prose h5 { font-size: 16px; margin: 24px 0 8px; }
-.prose h6 { font-size: 14px; margin: 24px 0 8px; color: var(--fg-secondary); }
+.prose h1 { font-size: 36px; line-height: 40px; letter-spacing: -0.45px; margin: 0; }
+.prose h2 { font-size: 30px; line-height: 36px; letter-spacing: -0.375px; margin: 0; }
+.prose h3 { font-size: 24px; line-height: 32px; letter-spacing: -0.3px; margin: 0; }
+.prose h4 { font-size: 18px; line-height: 28px; margin: 0; }
+.prose h5 { font-size: 16px; line-height: 24px; margin: 0; }
+.prose h6 { font-size: 14px; line-height: 20px; margin: 0; color: var(--fg-primary); }
 
-.prose h1 + *, .prose h2 + *, .prose h3 + * { margin-top: 0; }
+.prose > * + * { margin-top: 16px; }
+.prose > * + h2 { margin-top: 40px; }
+.prose > * + h3 { margin-top: 32px; }
+.prose > * + h4 { margin-top: 24px; }
 
 .heading-anchor {
   position: absolute;
@@ -75,27 +78,26 @@
 
 .prose code:not(pre code) {
   font-family: var(--font-mono);
-  font-size: 0.875em;
+  font-size: 14px;
   background: var(--bg-subtle);
   color: var(--fg-primary);
   padding: 1px 6px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  border: 0;
 }
 
 /* ── Code blocks (Shiki outputs pre.astro-code) ─── */
 
 .prose pre {
   position: relative;
-  margin: 20px 0;
-  padding: 18px 20px;
+  padding: 16px 20px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow-x: auto;
   font-size: 14px;
-  line-height: 1.6;
-  box-shadow: var(--shadow-sm);
+  line-height: 22px;
+  box-shadow: none;
 }
 
 .prose pre code {
@@ -239,37 +241,36 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  margin: 16px 0;
-  padding: 14px 18px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px var(--border);
   text-decoration: none !important;
   color: var(--fg-primary) !important;
-  font-weight: 500;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 120ms ease, transform 120ms ease, border-color 120ms ease;
+  font-weight: 400;
+  transition: box-shadow 120ms ease, background 120ms ease;
 }
 .page-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-strong);
+  box-shadow: 0 0 0 1px var(--border-strong);
+  background: rgba(0, 0, 0, 0.015);
   text-decoration: none !important;
 }
 .page-card__logo {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-subtle);
-  border-radius: 8px;
+  border-radius: 6px;
   color: var(--fg-secondary);
 }
-.page-card__logo svg { width: 18px; height: 18px; }
+.page-card__logo svg { width: 16px; height: 16px; }
 .page-card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .page-card__title {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--fg-primary);
   font-weight: 600;
   overflow: hidden;
