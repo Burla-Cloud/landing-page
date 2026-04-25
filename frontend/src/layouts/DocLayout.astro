@@ -13,9 +13,10 @@ interface Props {
   hideFirstHeading?: boolean;
   outlineBody?: string;
   pageHeading?: string;
+  pageSubtitle?: string;
 }
 
-const { title, description, hideFirstHeading, outlineBody, pageHeading } = Astro.props;
+const { title, description, hideFirstHeading, outlineBody, pageHeading, pageSubtitle } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const pageTitle = title === "Home" ? "Burla" : `${title} | Burla`;
 const showOutline = !!outlineBody;
@@ -43,6 +44,7 @@ const showOutline = !!outlineBody;
       <main class="content">
         <article class:list={["prose", { "prose--hide-h1": hideFirstHeading }]}>
           {pageHeading && <h1 class="prose__page-title">{pageHeading}</h1>}
+          {pageSubtitle && <p class="prose__page-subtitle">{pageSubtitle}</p>}
           <slot />
         </article>
       </main>

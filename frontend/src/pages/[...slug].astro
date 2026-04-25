@@ -22,6 +22,8 @@ const firstH1 = entry.body?.match(/^#\s+(.+?)\s*$/m)?.[1];
 const firstH2 = entry.body?.match(/^##\s+(.+?)\s*$/m)?.[1];
 const displayTitle = sidebarTitle || firstH1 || firstH2 || entry.id;
 
+const fmDescription = (entry.data as { description?: string })?.description?.trim() || undefined;
+
 const firstPara = entry.body
   ?.split(/\n\n+/)
   .find((block) =>
@@ -32,7 +34,7 @@ const firstPara = entry.body
     !block.startsWith("<") &&
     !block.startsWith("```"),
   );
-const description = firstPara?.trim().replace(/\s+/g, " ").slice(0, 200);
+const description = fmDescription || firstPara?.trim().replace(/\s+/g, " ").slice(0, 200);
 
 const hasFirstH1 = !!firstH1;
 ---
@@ -43,6 +45,7 @@ const hasFirstH1 = !!firstH1;
   outlineBody={entry.body}
   hideFirstHeading={hasFirstH1}
   pageHeading={displayTitle}
+  pageSubtitle={fmDescription}
 >
   <Content />
 </DocLayout>
