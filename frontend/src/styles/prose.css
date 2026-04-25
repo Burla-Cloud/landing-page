@@ -1,6 +1,13 @@
 /* ── Prose: markdown content rendered inside .prose ─────────────── */
 
-.prose { color: var(--fg-primary); font-size: 16px; line-height: 1.625; }
+.prose {
+  color: var(--fg-primary);
+  font-size: 16px;
+  line-height: 1.625;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 /* ── Headings ─────────────────────────────────────── */
 
@@ -29,16 +36,13 @@
   color: rgba(25, 30, 31, 0.64);
   font-weight: 500;
 }
-.prose h2 { font-size: 30px; line-height: 36px; letter-spacing: -0.375px; margin: 0; }
-.prose h3 { font-size: 24px; line-height: 32px; letter-spacing: -0.3px; margin: 0; }
+.prose h2 { font-size: 30px; line-height: 36px; letter-spacing: -0.375px; margin: 0; padding-bottom: 33px; }
+.prose h3 { font-size: 24px; line-height: 32px; letter-spacing: -0.3px; margin: 0; padding-bottom: 19px; }
 .prose h4 { font-size: 18px; line-height: 28px; margin: 0; }
 .prose h5 { font-size: 16px; line-height: 24px; margin: 0; }
 .prose h6 { font-size: 14px; line-height: 20px; margin: 0; color: var(--fg-primary); }
 
-.prose > * + * { margin-top: 16px; }
-.prose > * + h2 { margin-top: 40px; }
-.prose > * + h3 { margin-top: 32px; }
-.prose > * + h4 { margin-top: 24px; }
+.prose > * { margin-top: 0 !important; margin-bottom: 0 !important; }
 
 .heading-anchor {
   position: absolute;
@@ -66,7 +70,7 @@
 
 /* ── Paragraphs / text ──────────────────────────── */
 
-.prose p { margin: 0 0 16px; }
+.prose p { margin: 0; }
 
 .prose a {
   color: var(--accent);
@@ -105,7 +109,8 @@
 
 .prose pre {
   position: relative;
-  padding: 16px 20px;
+  min-height: 78px;
+  padding: 0 20px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -113,6 +118,12 @@
   font-size: 14px;
   line-height: 22px;
   box-shadow: none;
+}
+
+.prose pre:not(:has(.line:nth-child(2))) {
+  min-height: 38px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .prose pre code {
@@ -200,6 +211,7 @@
 
 .prose figure {
   text-align: center;
+  line-height: 0;
 }
 .prose figure img {
   display: inline-block;
@@ -210,8 +222,10 @@
 .prose figcaption {
   margin-top: 8px;
   font-size: 13px;
+  line-height: 18px;
   color: var(--fg-muted);
 }
+.prose figcaption:empty { display: none; }
 
 /* Multiple figures inside a div = horizontal layout (GitBook columns) */
 .prose div:has(> figure ~ figure) {
