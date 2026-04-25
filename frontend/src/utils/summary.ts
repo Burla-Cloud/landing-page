@@ -62,6 +62,18 @@ export function loadSidebarTitleByUrl(url: string): string | null {
   return null;
 }
 
+export function loadSectionForUrl(url: string): string | null {
+  const sections = loadSidebar();
+  for (const section of sections) {
+    for (const entry of section.entries) {
+      if (entry.kind === "link" && entry.href === url) {
+        return section.heading;
+      }
+    }
+  }
+  return null;
+}
+
 export function loadSidebar(): SidebarSection[] {
   const raw = readFileSync(SUMMARY_PATH, "utf8");
   const lines = raw.split(/\r?\n/);
