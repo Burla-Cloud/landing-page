@@ -13,6 +13,7 @@ type Name =
   | "copy"
   | "check"
   | "close"
+  | "menu"
   | "prompt";
 
 interface Props {
@@ -117,6 +118,13 @@ const commonAttrs = {
   <svg {...commonAttrs}>
     <path d="M18 6 6 18" />
     <path d="m6 6 12 12" />
+  </svg>
+)}
+{name === "menu" && (
+  <svg {...commonAttrs}>
+    <path d="M4 7h16" />
+    <path d="M4 12h16" />
+    <path d="M4 17h16" />
   </svg>
 )}
 {name === "prompt" && (
