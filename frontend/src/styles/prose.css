@@ -421,3 +421,10 @@
 .prose details > :not(summary) { padding: 0 16px 16px 16px; margin: 0 !important; }
 .prose details[open] summary { border-bottom: 1px solid var(--border); }
 .prose details[open] > :not(summary):first-of-type { padding-top: 16px; }
+@media (max-width: 639px) {
+  .prose h2 {
+    font-size: 24px;
+    line-height: 32px;
+    padding-bottom: 20px;
+  }
+}
