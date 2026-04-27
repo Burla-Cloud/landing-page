@@ -458,7 +458,6 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
   .nav-actions,
   .hero-actions,
   .card-top,
-  .proof-bar,
   .final-cta div {
     display: flex;
     align-items: center;
@@ -730,6 +729,7 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
     z-index: 2;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    align-items: stretch;
     gap: 1px;
     overflow: hidden;
     margin-top: -22px;
@@ -813,14 +813,14 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
   }
 
   .media-frame--terminal {
-    padding: 18px;
-    background:
-      radial-gradient(circle at 18% 10%, rgba(99, 91, 255, 0.12), transparent 26%),
-      #fff;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .media-frame--terminal img {
-    border-radius: 20px;
+    border-radius: 22px;
+    box-shadow: var(--shadow);
   }
 
   .pipeline-section {
@@ -865,9 +865,48 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
   }
 
   .how-section {
-    width: 100%;
-    padding: 110px max(24px, calc((100% - 1180px) / 2));
-    background: #0a2540;
+    position: relative;
+    width: min(1180px, calc(100% - 48px));
+    margin: 42px auto 86px;
+    padding: 76px;
+    overflow: hidden;
+    border-radius: 44px;
+    background:
+      radial-gradient(circle at 82% 8%, rgba(0, 212, 255, 0.28), transparent 34%),
+      radial-gradient(circle at 14% 84%, rgba(99, 91, 255, 0.22), transparent 32%),
+      linear-gradient(135deg, #071f35 0%, #0a2540 48%, #0d3e50 100%);
+    box-shadow: 0 32px 90px rgba(10, 37, 64, 0.22);
+  }
+
+  .how-section::before {
+    content: "";
+    position: absolute;
+    inset: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    pointer-events: none;
+  }
+
+  .how-section::after {
+    content: "";
+    position: absolute;
+    top: -90px;
+    right: 70px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(circle, black 0%, transparent 72%);
+    transform: rotate(-12deg);
+    pointer-events: none;
+  }
+
+  .how-section > * {
+    position: relative;
+    z-index: 1;
   }
 
   .how-section .kicker,
@@ -877,9 +916,9 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
 
   .section-heading--split {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 34px;
-    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+    gap: 48px;
+    align-items: start;
     max-width: none;
   }
 
@@ -901,15 +940,16 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
   .how-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 14px;
   }
 
   .how-grid article {
-    min-height: 280px;
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    min-height: 252px;
+    padding: 24px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.065);
+    background: rgba(255, 255, 255, 0.072);
+    backdrop-filter: blur(18px);
   }
 
   .how-grid span {
@@ -920,7 +960,7 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
   }
 
   .how-grid h3 {
-    margin-top: 58px;
+    margin-top: 42px;
     color: #fff;
   }
 
@@ -1217,6 +1257,10 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .how-section {
+      padding: 64px 44px;
+    }
+
     .section-heading--split {
       grid-template-columns: 1fr;
     }
@@ -1286,10 +1330,22 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
 
     main > section,
     .pipeline-section,
-    .how-section,
     .pricing-section {
       padding-top: 72px;
       padding-bottom: 72px;
+    }
+
+    .how-section {
+      width: min(100% - 32px, 1180px);
+      margin-top: 32px;
+      margin-bottom: 56px;
+      padding: 42px 22px;
+      border-radius: 30px;
+    }
+
+    .how-section::before {
+      inset: 16px;
+      border-radius: 22px;
     }
 
     .how-grid article,
