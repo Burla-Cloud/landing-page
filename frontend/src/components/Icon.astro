@@ -33,8 +33,8 @@ const commonAttrs = {
   "stroke-width": 2,
   "stroke-linecap": "round" as const,
   "stroke-linejoin": "round" as const,
-  "aria-hidden": label ? undefined : "true",
-  role: label ? "img" : undefined,
+  "aria-hidden": label ? undefined : ("true" as const),
+  role: label ? ("img" as const) : undefined,
   "aria-label": label,
   class: className,
 };

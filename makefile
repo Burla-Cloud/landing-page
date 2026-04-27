@@ -5,6 +5,7 @@ BURLA_VERSION = 0.1.0
 WEBSERVICE_NAME = burla-landing-page
 PYTHON_MODULE_NAME = landing_page
 SERVICE_PORT = 5002
+USER_DOCS_PATH ?= ../user-docs
 
 ARTIFACT_REPO_NAME := $(WEBSERVICE_NAME)
 ARTIFACT_PKG_NAME := $(WEBSERVICE_NAME)
@@ -13,9 +14,11 @@ ARTIFACT_PKG_NAME := $(WEBSERVICE_NAME)
 build-frontend:
 	set -e; \
 	pgrep -f "rsync -a --delete" >/dev/null && exit 0; \
+	DOCS_PATH=$$(cd "$(USER_DOCS_PATH)" && pwd); \
+	[ -e ./frontend/public/gitbook-assets ] || ln -s "$${DOCS_PATH}/.gitbook/assets" ./frontend/public/gitbook-assets; \
 	cd ./frontend; \
-	npm i; \
-	npm run build; \
+	USER_DOCS_PATH="$${DOCS_PATH}" npm i; \
+	USER_DOCS_PATH="$${DOCS_PATH}" npm run build; \
 	rsync -a --delete --exclude='.*' --exclude='login.html.j2' dist/ ../src/landing_page/static/
 
 deploy-test:

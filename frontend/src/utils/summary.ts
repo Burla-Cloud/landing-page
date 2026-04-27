@@ -23,7 +23,9 @@ export interface SidebarSection {
 
 const here = dirname(fileURLToPath(import.meta.url));
 const DEFAULT_SUMMARY_PATH = resolve(here, "../../../../user-docs/SUMMARY.md");
-const SUMMARY_PATH = process.env.USER_DOCS_SUMMARY_PATH ?? DEFAULT_SUMMARY_PATH;
+const SUMMARY_PATH =
+  process.env.USER_DOCS_SUMMARY_PATH ??
+  (process.env.USER_DOCS_PATH ? resolve(process.env.USER_DOCS_PATH, "SUMMARY.md") : DEFAULT_SUMMARY_PATH);
 
 const URL_PREFIX_ALIASES: Array<[RegExp, string]> = [
   [/^general-use-cases\//, "use-cases/"],

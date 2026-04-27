@@ -11,6 +11,19 @@ import remarkGitbookLinks from "./src/remark/gitbook-links.ts";
 
 
 const BASE_PATH = process.env.SITE_BASE_PATH ?? "";
+const GITBOOK_SHIKI_THEME = {
+  name: "gitbook-light",
+  type: "light",
+  settings: [
+    { settings: { foreground: "#191e1f", background: "#ffffff" } },
+    { scope: ["keyword", "storage"], settings: { foreground: "#e40021" } },
+    { scope: ["keyword.operator", "punctuation", "punctuation.definition", "punctuation.separator"], settings: { foreground: "#59737a" } },
+    { scope: ["constant.numeric", "variable.parameter"], settings: { foreground: "#bb5c00" } },
+    { scope: ["entity.name.function", "support.function", "support.type", "support.class", "variable.function"], settings: { foreground: "#5f7f8a" } },
+    { scope: ["support.type.builtin", "support.function.builtin"], settings: { foreground: "#bb5c00" } },
+    { scope: ["string"], settings: { foreground: "#009817" } },
+  ],
+};
 
 export default defineConfig({
   site: process.env.SITE_URL ?? "https://burla.dev",
@@ -19,7 +32,7 @@ export default defineConfig({
   markdown: {
     smartypants: false,
     shikiConfig: {
-      theme: "github-light",
+      theme: GITBOOK_SHIKI_THEME,
       wrap: true,
     },
     remarkPlugins: [
