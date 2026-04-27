@@ -23,7 +23,11 @@ const description =
   </head>
   <body>
     <div class="page">
-      <div class="hero-gradient" aria-hidden="true"></div>
+      <div class="hero-atmosphere" aria-hidden="true">
+        <span class="hero-atmosphere__mesh"></span>
+        <span class="hero-atmosphere__plane hero-atmosphere__plane--one"></span>
+        <span class="hero-atmosphere__plane hero-atmosphere__plane--two"></span>
+      </div>
 
       <header class="nav">
         <a class="brand" href={withBase("/")} aria-label="Burla home">
@@ -70,6 +74,20 @@ my_inputs = list(range(<span class="code-orange">1000</span>))
     print(f<span class="code-green">"[#&#123;x&#125;] running on separate computer"</span>)
 
 remote_parallel_map(my_function, my_inputs)</code></pre>
+            <div class="hero-card__footer" aria-hidden="true">
+              <div>
+                <small>cluster</small>
+                <strong>1000 VMs</strong>
+              </div>
+              <div>
+                <small>startup</small>
+                <strong>&lt;1 second</strong>
+              </div>
+              <div>
+                <small>cloud</small>
+                <strong>your GCP</strong>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -184,22 +202,22 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
           </div>
           <div class="feature-grid">
             <article>
-              <div class="feature-icon">pkg</div>
+              <div class="feature-icon feature-icon--package" aria-hidden="true"><span></span><span></span><span></span></div>
               <h3>Automatic Package Sync</h3>
               <p>Burla automatically, and very quickly, clones your Python packages on every remote machine where code is executed.</p>
             </article>
             <article>
-              <div class="feature-icon">img</div>
+              <div class="feature-icon feature-icon--container" aria-hidden="true"><span></span><span></span><span></span></div>
               <h3>Custom Containers</h3>
               <p>Easily run code in any Docker container. Public or private, just paste an image URI in the settings, then hit start.</p>
             </article>
             <article>
-              <div class="feature-icon">fs</div>
+              <div class="feature-icon feature-icon--filesystem" aria-hidden="true"><span></span><span></span><span></span></div>
               <h3>Network Filesystem</h3>
               <p>Need to get big data into or out of the cluster? Burla automatically mounts a cloud storage bucket to a folder in every container.</p>
             </article>
             <article>
-              <div class="feature-icon">cpu</div>
+              <div class="feature-icon feature-icon--hardware" aria-hidden="true"><span></span><span></span><span></span></div>
               <h3>Variable Hardware Per-Function</h3>
               <p>The <code>func_cpu</code> and <code>func_ram</code> args make it possible to assign big hardware to some functions, and less to others.</p>
             </article>
@@ -344,38 +362,72 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
     overflow: hidden;
   }
 
-  .hero-gradient {
+  .hero-atmosphere {
     position: absolute;
-    top: -102px;
-    right: -126px;
+    top: 54px;
+    right: -22px;
     z-index: 0;
-    width: 980px;
-    height: 760px;
-    border-radius: 44% 56% 48% 52%;
-    background:
-      linear-gradient(138deg, rgba(255, 181, 70, 0.95) 0%, rgba(255, 90, 165, 0.88) 32%, rgba(122, 115, 255, 0.72) 58%, rgba(0, 212, 255, 0.62) 100%),
-      radial-gradient(circle at 20% 20%, #fff 0, transparent 32%);
-    filter: blur(0.2px);
-    transform: rotate(-18deg) skewY(-10deg);
-    opacity: 0.92;
+    width: 690px;
+    height: 560px;
     pointer-events: none;
   }
 
-  .hero-gradient::before,
-  .hero-gradient::after {
+  .hero-atmosphere::before {
     content: "";
     position: absolute;
-    inset: 90px 0 auto 90px;
-    height: 180px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.45);
-    transform: rotate(14deg);
+    inset: 58px 0 0 80px;
+    border-radius: 44px;
+    background:
+      linear-gradient(135deg, rgba(99, 91, 255, 0.13), rgba(0, 214, 111, 0.14)),
+      rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(99, 91, 255, 0.12);
+    box-shadow: 0 34px 90px rgba(50, 50, 93, 0.12);
+    transform: rotate(-7deg) skewY(-3deg);
   }
 
-  .hero-gradient::after {
-    inset: auto 100px 120px 40px;
-    height: 120px;
-    background: rgba(255, 255, 255, 0.28);
+  .hero-atmosphere__mesh {
+    position: absolute;
+    inset: 0;
+    border-radius: 52px;
+    background:
+      radial-gradient(circle at 72% 24%, rgba(0, 212, 255, 0.42), transparent 24%),
+      radial-gradient(circle at 34% 72%, rgba(99, 91, 255, 0.26), transparent 28%),
+      linear-gradient(135deg, rgba(0, 214, 111, 0.22), rgba(246, 249, 252, 0) 54%);
+    opacity: 0.92;
+  }
+
+  .hero-atmosphere__mesh::before {
+    content: "";
+    position: absolute;
+    inset: 84px 78px 70px 96px;
+    background-image:
+      linear-gradient(rgba(10, 37, 64, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 37, 64, 0.08) 1px, transparent 1px);
+    background-size: 30px 30px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 76%);
+    transform: rotate(-7deg);
+  }
+
+  .hero-atmosphere__plane {
+    position: absolute;
+    width: 230px;
+    height: 80px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid rgba(99, 91, 255, 0.12);
+    box-shadow: 0 20px 60px rgba(50, 50, 93, 0.11);
+  }
+
+  .hero-atmosphere__plane--one {
+    top: 70px;
+    right: 70px;
+    transform: rotate(-14deg);
+  }
+
+  .hero-atmosphere__plane--two {
+    right: 168px;
+    bottom: 66px;
+    transform: rotate(11deg);
   }
 
   .nav,
@@ -559,11 +611,12 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
   .hero-card {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.34);
-    border-radius: 26px;
-    background: rgba(10, 37, 64, 0.88);
-    box-shadow: var(--shadow);
-    transform: translateY(28px);
+    border: 1px solid rgba(10, 37, 64, 0.1);
+    border-radius: 28px;
+    background:
+      linear-gradient(180deg, rgba(10, 37, 64, 0.94), rgba(13, 66, 82, 0.95));
+    box-shadow: 0 28px 80px rgba(10, 37, 64, 0.22);
+    transform: translateY(20px);
   }
 
   .hero-card::after {
@@ -619,6 +672,41 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
     color: #fff;
     font-size: 14px;
     line-height: 1.85;
+  }
+
+  .hero-card__footer {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    padding: 1px;
+    background: rgba(255, 255, 255, 0.11);
+  }
+
+  .hero-card__footer div {
+    padding: 16px 18px;
+    background: rgba(255, 255, 255, 0.055);
+  }
+
+  .hero-card__footer small,
+  .hero-card__footer strong {
+    display: block;
+  }
+
+  .hero-card__footer small {
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-card__footer strong {
+    margin-top: 5px;
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: -0.035em;
   }
 
   .code-purple {
@@ -864,17 +952,107 @@ remote_parallel_map(predict, [...], func_gpu=<span class="code-green">"A100"</sp
   }
 
   .feature-icon {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 48px;
     height: 48px;
     border-radius: 16px;
-    color: #fff;
-    background: linear-gradient(135deg, var(--blue), #00b8ff);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 700;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 72% 24%, rgba(255, 255, 255, 0.5), transparent 18px),
+      linear-gradient(135deg, var(--blue), #00b8ff);
+    box-shadow: 0 14px 28px rgba(99, 91, 255, 0.22);
+  }
+
+  .feature-icon span {
+    position: absolute;
+    display: block;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 0 0 1px rgba(10, 37, 64, 0.04);
+  }
+
+  .feature-icon--package span {
+    width: 18px;
+    height: 12px;
+    border-radius: 4px;
+  }
+
+  .feature-icon--package span:nth-child(1) {
+    transform: translate(-8px, -8px);
+  }
+
+  .feature-icon--package span:nth-child(2) {
+    transform: translate(7px, 0);
+    opacity: 0.78;
+  }
+
+  .feature-icon--package span:nth-child(3) {
+    transform: translate(-4px, 10px);
+    opacity: 0.62;
+  }
+
+  .feature-icon--container span {
+    width: 28px;
+    height: 7px;
+    border-radius: 999px;
+  }
+
+  .feature-icon--container span:nth-child(1) {
+    transform: translateY(-10px);
+  }
+
+  .feature-icon--container span:nth-child(2) {
+    transform: translateY(0);
+    opacity: 0.76;
+  }
+
+  .feature-icon--container span:nth-child(3) {
+    transform: translateY(10px);
+    opacity: 0.54;
+  }
+
+  .feature-icon--filesystem span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+
+  .feature-icon--filesystem span:nth-child(1) {
+    transform: translate(-11px, -8px);
+  }
+
+  .feature-icon--filesystem span:nth-child(2) {
+    transform: translate(11px, -8px);
+  }
+
+  .feature-icon--filesystem span:nth-child(3) {
+    width: 30px;
+    height: 4px;
+    border-radius: 999px;
+    transform: translateY(9px);
+    opacity: 0.72;
+  }
+
+  .feature-icon--hardware span {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+
+  .feature-icon--hardware span:nth-child(1) {
+    transform: translate(-9px, -7px);
+  }
+
+  .feature-icon--hardware span:nth-child(2) {
+    transform: translate(8px, -2px);
+    opacity: 0.76;
+  }
+
+  .feature-icon--hardware span:nth-child(3) {
+    transform: translate(-1px, 10px);
+    opacity: 0.58;
   }
 
   .feature-grid h3 {
