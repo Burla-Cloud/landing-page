@@ -1,5 +1,5 @@
 ---
-import { loadSidebar, type SidebarSection, type SidebarEntry } from "../utils/summary";
+import { loadDocsNav, type SidebarSection } from "../utils/summary";
 import { withBase } from "../utils/base";
 
 interface Props {
@@ -7,14 +7,7 @@ interface Props {
 }
 
 const { currentPath } = Astro.props;
-const sections = loadSidebar();
-
-const HIDDEN_PATHS = new Set([
-  "/security",
-  "/privacy-policy",
-  "/software-as-a-service-agreement",
-  "/website-privacy-policy",
-]);
+const sections = loadDocsNav();
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "") || "";
 
@@ -23,38 +16,18 @@ function isActive(href: string): boolean {
   if (href === "/") return currentPath === "/" || currentPath === "" || currentPath === base + "/" || currentPath === base;
   return currentPath === full || currentPath === full + "/";
 }
-
-function visibleEntries(entries: SidebarEntry[]): SidebarEntry[] {
-  return entries
-    .map((entry) => {
-      if (entry.kind === "link") return entry;
-      return {
-        ...entry,
-        items: entry.items.filter((item) => !HIDDEN_PATHS.has(item.href)),
-      };
-    })
-    .filter((e) => e.kind === "group" || !HIDDEN_PATHS.has(e.href));
-}
-
-function isGroupOpen(entry: SidebarEntry): boolean {
-  if (entry.kind !== "group") return false;
-  return isActive(entry.href) || entry.items.some((item) => isActive(item.href));
-}
 ---
 
 <aside class="sidebar" aria-label="Documentation navigation">
   <nav class="sidebar__inner">
     {sections.map((section: SidebarSection) => {
-      const entries = visibleEntries(section.entries);
-      if (entries.length === 0) return null;
       return (
         <div class="nav-section">
           {section.heading && (
             <div class="nav-section__heading">{section.heading}</div>
           )}
           <ul class="nav-list">
-            {entries.map((entry) =>
-              entry.kind === "link" ? (
+            {section.entries.map((entry) =>
                 <li>
                   <a
                     class:list={["nav-item", { "nav-item--active": isActive(entry.href) }]}
@@ -63,31 +36,6 @@ function isGroupOpen(entry: SidebarEntry): boolean {
                     {entry.title}
                   </a>
                 </li>
-              ) : (
-                <li class:list={["nav-group", { "nav-group--open": isGroupOpen(entry) }]}>
-                  <a
-                    class:list={["nav-item nav-item--group", { "nav-item--active": isActive(entry.href) }]}
-                    href={withBase(entry.href)}
-                  >
-                    <span>{entry.title}</span>
-                    <span class="nav-item__chevron" aria-hidden="true">›</span>
-                  </a>
-                  {isGroupOpen(entry) && (
-                    <ul class="nav-sublist">
-                      {entry.items.map((item) => (
-                        <li>
-                          <a
-                            class:list={["nav-subitem", { "nav-subitem--active": isActive(item.href) }]}
-                            href={withBase(item.href)}
-                          >
-                            {item.title}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              )
             )}
           </ul>
         </div>

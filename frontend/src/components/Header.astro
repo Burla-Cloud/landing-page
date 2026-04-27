@@ -1,13 +1,9 @@
 ---
-import Icon from "./Icon.astro";
 import { withBase } from "../utils/base";
 ---
 
 <header class="site-header">
   <div class="site-header__inner">
-    <button class="mobile-menu" type="button" aria-label="Open menu">
-      <Icon name="menu" size={18} />
-    </button>
     <a class="brand" href={withBase("/")} aria-label="Burla home">
       <span class="brand__mark" aria-hidden="true">
         <img src={withBase("/gitbook-favicon.png")} alt="" />
@@ -15,16 +11,15 @@ import { withBase } from "../utils/base";
       <span class="brand__name">Burla</span>
     </a>
 
-    <nav class="site-header__nav" aria-label="Primary">
-      <a class="text-link" href="https://github.com/Burla-Cloud/burla" target="_blank" rel="noopener">GitHub</a>
-      <a class="text-link" href="https://discord.gg/2EH9AyYBGg" target="_blank" rel="noopener">Discord</a>
-      <a class="text-link" href="https://cal.com/jakez/burla?user=jakez&duration=30" target="_blank" rel="noopener">Book a call</a>
-      <a class="text-link text-link--button" href="https://login.burla.dev/">Log In</a>
-      <a class="btn btn--primary" href="https://login.burla.dev/">Try it Now</a>
-      <button class="more-link" type="button" aria-label="More">
-        <Icon name="ellipsis" size={16} />
-        <Icon name="chevron-down" size={16} />
-      </button>
+    <nav class="site-header__center" aria-label="Primary">
+      <a class="top-link" href={withBase("/docs/quickstart")}>Quickstart</a>
+      <a class="top-link" href={withBase("/docs")}>Docs</a>
+      <a class="top-link" href={withBase("/examples")}>Examples</a>
+    </nav>
+
+    <nav class="site-header__actions" aria-label="Account">
+      <a class="text-link text-link--button" href="https://login.burla.dev/">Sign in</a>
+      <a class="btn btn--primary" href="https://login.burla.dev/">Try it now</a>
     </nav>
   </div>
 </header>

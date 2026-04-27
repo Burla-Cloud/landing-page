@@ -8,18 +8,9 @@ export interface SidebarLink {
   href: string;
 }
 
-export interface SidebarGroup {
-  kind: "group";
-  title: string;
-  href: string;
-  items: SidebarLink[];
-}
-
-export type SidebarEntry = SidebarLink | SidebarGroup;
-
 export interface SidebarSection {
   heading: string | null;
-  entries: SidebarEntry[];
+  entries: SidebarLink[];
 }
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -29,25 +20,34 @@ const SUMMARY_PATH =
   (process.env.USER_DOCS_PATH ? resolve(process.env.USER_DOCS_PATH, "SUMMARY.md") : DEFAULT_SUMMARY_PATH);
 
 const URL_PREFIX_ALIASES: Array<[RegExp, string]> = [
-  [/^demo-walkthroughs$/, "examples/demo-walkthroughs"],
-  [/^demo-blogs\//, "examples/demo-walkthroughs/"],
-  [
-    /^general-use-cases\/(run-batch-inference-and-vector-embeddings|run-pipeline-stages-on-different-hardware)$/,
-    "use-cases/more-use-cases/$1",
-  ],
-  [/^general-use-cases\//, "use-cases/"],
-  [
-    /^common-patterns\/(limit-parallelism-for-apis-databases-and-websites|use-custom-docker-images-and-gpus|run-python-in-the-background)$/,
-    "how-to/more-how-to-articles/$1",
-  ],
-  [/^common-patterns\//, "how-to/"],
+  [/^general-use-cases\//, "docs/use-cases/"],
+  [/^common-patterns\//, "docs/how-to/"],
+  [/^demo-blogs\//, "examples/"],
 ];
+
+const URL_ALIASES = new Map<string, string>([
+  ["get-started", "docs/quickstart"],
+  ["api-reference", "docs/api-reference"],
+  ["about", "docs/about"],
+  ["demo-walkthroughs", "examples"],
+  ["the-experiment-you-dont-run", "docs/essays/the-experiment-you-dont-run"],
+  ["stop-designing-the-cluster", "docs/essays/stop-designing-the-cluster"],
+]);
+
+const HIDDEN_URLS = new Set([
+  "/security",
+  "/privacy-policy",
+  "/software-as-a-service-agreement",
+  "/website-privacy-policy",
+]);
 
 export function idToUrl(rawId: string): string {
   let id = rawId.trim().replace(/\.md$/i, "");
   if (id.startsWith("./")) id = id.slice(2);
   if (id === "README" || id === "") return "/";
-  if (id.toLowerCase() === "api-reference") return "/api-reference";
+  const lower = id.toLowerCase();
+  const aliased = URL_ALIASES.get(lower);
+  if (aliased) return "/" + aliased;
   for (const [re, repl] of URL_PREFIX_ALIASES) id = id.replace(re, repl);
   return "/" + id;
 }
@@ -61,41 +61,25 @@ function mdPathToHref(path: string): string {
   return idToUrl(path);
 }
 
-function productionTitle(title: string): string {
-  if (title === "Other Examples") return "More Examples";
-  return title;
-}
-
-const LINK_RE = /^\s*[-*]\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
-const NESTED_LINK_RE = /^\s{2,}[-*]\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
+const LINK_RE = /^(\s*)[-*]\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
 const H2_RE = /^##\s+(.+?)\s*$/;
 
 export function loadSidebarTitleByUrl(url: string): string | null {
-  const sections = loadSidebar();
+  const sections = loadDocsNav();
   for (const section of sections) {
     for (const entry of section.entries) {
-      if (entry.kind === "link" && entry.href === url) return entry.title;
-      if (entry.kind === "group") {
-        if (entry.href === url) return entry.title;
-        for (const item of entry.items) {
-          if (item.href === url) return item.title;
-        }
-      }
+      if (entry.href === url) return entry.title;
     }
   }
   return null;
 }
 
 export function loadSectionForUrl(url: string): string | null {
-  const sections = loadSidebar();
+  const sections = loadDocsNav();
   for (const section of sections) {
     for (const entry of section.entries) {
-      if (entry.kind === "link" && entry.href === url) {
+      if (entry.href === url) {
         return section.heading;
-      }
-      if (entry.kind === "group") {
-        if (entry.href === url) return section.heading;
-        if (entry.items.some((item) => item.href === url)) return section.heading;
       }
     }
   }
@@ -121,35 +105,36 @@ export function loadSidebar(): SidebarSection[] {
       continue;
     }
 
-    const nested = NESTED_LINK_RE.exec(line);
-    if (nested) {
-      const [, title, path] = nested;
-      const last = current.entries[current.entries.length - 1];
-      if (last && last.kind === "group") {
-        last.items.push({ kind: "link", title: title!, href: mdPathToHref(path!) });
-      } else if (last && last.kind === "link") {
-        const group: SidebarGroup = { kind: "group", title: productionTitle(last.title), href: last.href, items: [] };
-        group.items.push({ kind: "link", title: productionTitle(title!), href: mdPathToHref(path!) });
-        current.entries[current.entries.length - 1] = group;
-      }
-      continue;
-    }
-
     const link = LINK_RE.exec(line);
     if (link) {
-      const [, title, path] = link;
-      current.entries.push({ kind: "link", title: productionTitle(title!), href: mdPathToHref(path!) });
+      const [, , title, path] = link;
+      current.entries.push({ kind: "link", title: title!, href: mdPathToHref(path!) });
     }
   }
 
-  const seenHeadings = new Set<string>();
-  const uniqueSections = sections.filter((section) => {
-    if (!section.heading) return true;
+  const uniqueSections: SidebarSection[] = [];
+  const sectionByHeading = new Map<string, SidebarSection>();
+  for (const section of sections) {
+    if (!section.heading) {
+      uniqueSections.push(section);
+      continue;
+    }
     const key = section.heading.toLowerCase();
-    if (seenHeadings.has(key)) return false;
-    seenHeadings.add(key);
-    return true;
-  });
+    const existing = sectionByHeading.get(key);
+    if (existing) {
+      existing.entries.push(...section.entries);
+      continue;
+    }
+    sectionByHeading.set(key, section);
+    uniqueSections.push(section);
+  }
+
+  for (const section of uniqueSections) {
+    section.entries = section.entries.map((entry) => {
+      if (entry.title === "Other Examples") return { ...entry, title: "Demo walkthroughs" };
+      return entry;
+    });
+  }
 
   const essaysIndex = uniqueSections.findIndex((section) => section.heading?.toLowerCase() === "essays");
   if (essaysIndex > 0) {
@@ -158,4 +143,42 @@ export function loadSidebar(): SidebarSection[] {
   }
 
   return uniqueSections;
+}
+
+function uniqueLinks(links: SidebarLink[]): SidebarLink[] {
+  const seen = new Set<string>();
+  return links.filter((link) => {
+    if (seen.has(link.href) || HIDDEN_URLS.has(link.href)) return false;
+    seen.add(link.href);
+    return true;
+  });
+}
+
+function sectionEntries(sections: SidebarSection[], heading: string): SidebarLink[] {
+  const section = sections.find((item) => item.heading?.toLowerCase() === heading.toLowerCase());
+  return uniqueLinks(section?.entries ?? []);
+}
+
+export function loadDocsNav(): SidebarSection[] {
+  const sections = loadSidebar();
+  const examples = sectionEntries(sections, "Examples").filter((link) => link.href !== "/examples");
+
+  return [
+    {
+      heading: "Start here",
+      entries: [
+        { kind: "link", title: "Overview", href: "/docs" },
+        { kind: "link", title: "Quickstart", href: "/docs/quickstart" },
+        { kind: "link", title: "API/CLI Reference", href: "/docs/api-reference" },
+        { kind: "link", title: "About", href: "/docs/about" },
+      ],
+    },
+    { heading: "Use Cases", entries: sectionEntries(sections, "Use Cases") },
+    { heading: "How To", entries: sectionEntries(sections, "How To") },
+    {
+      heading: "Examples",
+      entries: [{ kind: "link", title: "All examples", href: "/examples" }, ...examples],
+    },
+    { heading: "Essays", entries: sectionEntries(sections, "Essays") },
+  ].filter((section) => section.entries.length > 0);
 }
