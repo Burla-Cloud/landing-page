@@ -112,5 +112,28 @@ export function loadSidebar(): SidebarSection[] {
     }
   }
 
-  return sections;
+  for (const section of sections) {
+    section.entries = section.entries.map((entry) => {
+      if (entry.kind !== "link") return entry;
+      if (entry.title === "Other Examples") return { ...entry, title: "Demo walkthroughs" };
+      return entry;
+    });
+  }
+
+  const seenHeadings = new Set<string>();
+  const uniqueSections = sections.filter((section) => {
+    if (!section.heading) return true;
+    const key = section.heading.toLowerCase();
+    if (seenHeadings.has(key)) return false;
+    seenHeadings.add(key);
+    return true;
+  });
+
+  const essaysIndex = uniqueSections.findIndex((section) => section.heading?.toLowerCase() === "essays");
+  if (essaysIndex > 0) {
+    const [essays] = uniqueSections.splice(essaysIndex, 1);
+    uniqueSections.splice(1, 0, essays);
+  }
+
+  return uniqueSections;
 }
