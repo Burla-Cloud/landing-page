@@ -147,19 +147,19 @@ body {
 }
 
 .page--home {
-  max-width: 980px;
+  max-width: 1120px;
 }
 
 .page--docs-nav {
   display: grid;
-  grid-template-columns: 244px minmax(0, var(--content-max)) 220px;
+  grid-template-columns: 280px minmax(0, var(--content-max)) 220px;
   align-items: start;
   justify-content: center;
   column-gap: 56px;
 }
 
 .page--with-outline {
-  grid-template-columns: 244px minmax(0, var(--content-max)) 220px;
+  grid-template-columns: 280px minmax(0, var(--content-max)) 220px;
 }
 
 .sidebar {
