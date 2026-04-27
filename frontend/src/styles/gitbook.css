@@ -308,7 +308,7 @@ body {
   }
 
   .content {
-    padding: 32px 0 37px;
+    padding: 32px 0 42px;
   }
 
   .prose {
@@ -413,7 +413,7 @@ body {
   }
 
   .content {
-    padding: 32px 0 57px;
+    padding: 32px 0 62px;
   }
 
   .prose {
@@ -457,7 +457,7 @@ body {
 }
 
 @media (min-width: 640px) and (max-width: 960px) {
-  .content { margin-left: 32px; margin-right: 32px; padding-bottom: 39px; }
+  .content { margin-left: 32px; margin-right: 32px; padding-bottom: 44px; }
   .site-header__inner {
     padding-left: 32px;
     padding-right: 32px;
