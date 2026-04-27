@@ -11,6 +11,7 @@ export interface SidebarLink {
 export interface SidebarGroup {
   kind: "group";
   title: string;
+  href: string;
   items: SidebarLink[];
 }
 
@@ -28,7 +29,17 @@ const SUMMARY_PATH =
   (process.env.USER_DOCS_PATH ? resolve(process.env.USER_DOCS_PATH, "SUMMARY.md") : DEFAULT_SUMMARY_PATH);
 
 const URL_PREFIX_ALIASES: Array<[RegExp, string]> = [
+  [/^demo-walkthroughs$/, "examples/demo-walkthroughs"],
+  [/^demo-blogs\//, "examples/demo-walkthroughs/"],
+  [
+    /^general-use-cases\/(run-batch-inference-and-vector-embeddings|run-pipeline-stages-on-different-hardware)$/,
+    "use-cases/more-use-cases/$1",
+  ],
   [/^general-use-cases\//, "use-cases/"],
+  [
+    /^common-patterns\/(limit-parallelism-for-apis-databases-and-websites|use-custom-docker-images-and-gpus|run-python-in-the-background)$/,
+    "how-to/more-how-to-articles/$1",
+  ],
   [/^common-patterns\//, "how-to/"],
 ];
 
@@ -50,6 +61,11 @@ function mdPathToHref(path: string): string {
   return idToUrl(path);
 }
 
+function productionTitle(title: string): string {
+  if (title === "Other Examples") return "More Examples";
+  return title;
+}
+
 const LINK_RE = /^\s*[-*]\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
 const NESTED_LINK_RE = /^\s{2,}[-*]\s+\[([^\]]+)\]\(([^)]+)\)\s*$/;
 const H2_RE = /^##\s+(.+?)\s*$/;
@@ -59,6 +75,12 @@ export function loadSidebarTitleByUrl(url: string): string | null {
   for (const section of sections) {
     for (const entry of section.entries) {
       if (entry.kind === "link" && entry.href === url) return entry.title;
+      if (entry.kind === "group") {
+        if (entry.href === url) return entry.title;
+        for (const item of entry.items) {
+          if (item.href === url) return item.title;
+        }
+      }
     }
   }
   return null;
@@ -70,6 +92,10 @@ export function loadSectionForUrl(url: string): string | null {
     for (const entry of section.entries) {
       if (entry.kind === "link" && entry.href === url) {
         return section.heading;
+      }
+      if (entry.kind === "group") {
+        if (entry.href === url) return section.heading;
+        if (entry.items.some((item) => item.href === url)) return section.heading;
       }
     }
   }
@@ -101,6 +127,10 @@ export function loadSidebar(): SidebarSection[] {
       const last = current.entries[current.entries.length - 1];
       if (last && last.kind === "group") {
         last.items.push({ kind: "link", title: title!, href: mdPathToHref(path!) });
+      } else if (last && last.kind === "link") {
+        const group: SidebarGroup = { kind: "group", title: productionTitle(last.title), href: last.href, items: [] };
+        group.items.push({ kind: "link", title: productionTitle(title!), href: mdPathToHref(path!) });
+        current.entries[current.entries.length - 1] = group;
       }
       continue;
     }
@@ -108,7 +138,7 @@ export function loadSidebar(): SidebarSection[] {
     const link = LINK_RE.exec(line);
     if (link) {
       const [, title, path] = link;
-      current.entries.push({ kind: "link", title: title!, href: mdPathToHref(path!) });
+      current.entries.push({ kind: "link", title: productionTitle(title!), href: mdPathToHref(path!) });
     }
   }
 
@@ -120,14 +150,6 @@ export function loadSidebar(): SidebarSection[] {
     seenHeadings.add(key);
     return true;
   });
-
-  for (const section of uniqueSections) {
-    section.entries = section.entries.map((entry) => {
-      if (entry.kind !== "link") return entry;
-      if (entry.title === "Other Examples") return { ...entry, title: "Demo walkthroughs" };
-      return entry;
-    });
-  }
 
   const essaysIndex = uniqueSections.findIndex((section) => section.heading?.toLowerCase() === "essays");
   if (essaysIndex > 0) {

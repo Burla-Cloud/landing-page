@@ -4,7 +4,17 @@ import type { Root, Link, Html } from "mdast";
 const BASE = (process.env.SITE_BASE_PATH ?? "").replace(/\/$/, "");
 
 const URL_PREFIX_ALIASES: Array<[RegExp, string]> = [
+  [/^demo-walkthroughs$/, "examples/demo-walkthroughs"],
+  [/^demo-blogs\//, "examples/demo-walkthroughs/"],
+  [
+    /^general-use-cases\/(run-batch-inference-and-vector-embeddings|run-pipeline-stages-on-different-hardware)$/,
+    "use-cases/more-use-cases/$1",
+  ],
   [/^general-use-cases\//, "use-cases/"],
+  [
+    /^common-patterns\/(limit-parallelism-for-apis-databases-and-websites|use-custom-docker-images-and-gpus|run-python-in-the-background)$/,
+    "how-to/more-how-to-articles/$1",
+  ],
   [/^common-patterns\//, "how-to/"],
 ];
 

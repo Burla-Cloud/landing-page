@@ -25,7 +25,20 @@ function isActive(href: string): boolean {
 }
 
 function visibleEntries(entries: SidebarEntry[]): SidebarEntry[] {
-  return entries.filter((e) => e.kind === "group" || !HIDDEN_PATHS.has(e.href));
+  return entries
+    .map((entry) => {
+      if (entry.kind === "link") return entry;
+      return {
+        ...entry,
+        items: entry.items.filter((item) => !HIDDEN_PATHS.has(item.href)),
+      };
+    })
+    .filter((e) => e.kind === "group" || !HIDDEN_PATHS.has(e.href));
+}
+
+function isGroupOpen(entry: SidebarEntry): boolean {
+  if (entry.kind !== "group") return false;
+  return isActive(entry.href) || entry.items.some((item) => isActive(item.href));
 }
 ---
 
@@ -50,7 +63,31 @@ function visibleEntries(entries: SidebarEntry[]): SidebarEntry[] {
                     {entry.title}
                   </a>
                 </li>
-              ) : null
+              ) : (
+                <li class:list={["nav-group", { "nav-group--open": isGroupOpen(entry) }]}>
+                  <a
+                    class:list={["nav-item nav-item--group", { "nav-item--active": isActive(entry.href) }]}
+                    href={withBase(entry.href)}
+                  >
+                    <span>{entry.title}</span>
+                    <span class="nav-item__chevron" aria-hidden="true">›</span>
+                  </a>
+                  {isGroupOpen(entry) && (
+                    <ul class="nav-sublist">
+                      {entry.items.map((item) => (
+                        <li>
+                          <a
+                            class:list={["nav-subitem", { "nav-subitem--active": isActive(item.href) }]}
+                            href={withBase(item.href)}
+                          >
+                            {item.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              )
             )}
           </ul>
         </div>

@@ -8,6 +8,7 @@ import remarkGitbookEmbed from "./src/remark/gitbook-embed.ts";
 import remarkGitbookColumns from "./src/remark/gitbook-columns.ts";
 import remarkGitbookAssets from "./src/remark/gitbook-assets.ts";
 import remarkGitbookLinks from "./src/remark/gitbook-links.ts";
+import rehypeGitbookLinks from "./src/rehype/gitbook-links.ts";
 
 
 const BASE_PATH = process.env.SITE_BASE_PATH ?? "";
@@ -45,6 +46,7 @@ export default defineConfig({
     ],
     rehypePlugins: [
       rehypeSlug,
+      rehypeGitbookLinks,
       [
         rehypeAutolinkHeadings,
         {
