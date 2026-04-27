@@ -1,16 +1,802 @@
 ---
-import { getEntry, render } from "astro:content";
-import DocLayout from "../layouts/DocLayout.astro";
+import { withBase } from "../utils/base";
 
-const entry = await getEntry("docs", "README");
-if (!entry) throw new Error("Missing user-docs/README.md");
-const { Content } = await render(entry);
+const title = "Burla | Scale Python across thousands of CPUs and GPUs";
+const description =
+  "Burla runs ordinary Python functions across thousands of CPUs or GPUs in your GCP project, with local-feeling logs, errors, files, and feedback.";
 ---
 
-<DocLayout
-  title="Home"
-  description="Burla is a high-performance parallel processing library for data-teams that iterate quickly. Scale Python across 1000 CPUs or GPUs in 1 second."
-  hideFirstHeading
->
-  <Content />
-</DocLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    />
+  </head>
+  <body>
+    <main class="site-shell">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href={withBase("/")} aria-label="Burla home">
+          <img src={withBase("/logo_small.svg")} alt="" />
+          <span>Burla</span>
+        </a>
+        <div class="nav__links">
+          <a href={withBase("/get-started")}>Docs</a>
+          <a href={withBase("/examples/process-2.4tb-of-parquet-files-in-76s")}>Examples</a>
+          <a href="https://github.com/Burla-Cloud/burla" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://cal.com/jakez/burla?user=jakez&duration=30" target="_blank" rel="noopener">Book a call</a>
+        </div>
+        <a class="nav__cta" href="https://login.burla.dev/">Try Burla</a>
+      </nav>
+
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Distributed compute for Python teams</p>
+          <h1>Run Python on thousands of CPUs or GPUs in one function call.</h1>
+          <p class="lede">
+            Burla turns ordinary Python into cloud-scale jobs that feel local: stdout streams back,
+            exceptions raise where you started them, and workers run inside your GCP project.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="https://login.burla.dev/">Start a 1000-CPU run</a>
+            <a class="button button--secondary" href={withBase("/get-started")}>Read the docs</a>
+          </div>
+          <div class="proof-strip" aria-label="Product facts">
+            <span>1000 VMs in under a second</span>
+            <span>Self-hosted in GCP</span>
+            <span>CPU and GPU workloads</span>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-label="Burla job preview">
+          <div class="job-card">
+            <div class="job-card__top">
+              <span class="dot dot--red"></span>
+              <span class="dot dot--yellow"></span>
+              <span class="dot dot--green"></span>
+              <span class="job-card__title">remote_parallel_map</span>
+            </div>
+            <pre><code><span class="code-pink">from</span> burla <span class="code-pink">import</span> remote_parallel_map
+
+<span class="code-muted"># Same function. Cloud-scale hardware.</span>
+results = remote_parallel_map(
+    embed_document,
+    documents,
+    func_gpu=<span class="code-green">"A100"</span>,
+    image=<span class="code-green">"pytorch/pytorch:latest"</span>,
+)</code></pre>
+          </div>
+          <div class="cluster-card">
+            <div>
+              <span class="cluster-card__label">Live cluster</span>
+              <strong>1,024 workers</strong>
+            </div>
+            <div class="worker-grid" aria-hidden="true">
+              {Array.from({ length: 96 }).map((_, index) => (
+                <span style={`--delay:${index % 12}; --row:${Math.floor(index / 12)}`}></span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Burla capabilities">
+        <div>
+          <strong>10,000+</strong>
+          <span>CPUs from one Python call</span>
+        </div>
+        <div>
+          <strong>A100</strong>
+          <span>GPU workers when functions need them</span>
+        </div>
+        <div>
+          <strong>0</strong>
+          <span>Queues, DAGs, or new syntax to learn</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__heading">
+          <p class="eyebrow">Why teams switch</p>
+          <h2>Cloud scale without turning notebooks into infrastructure projects.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span>01</span>
+            <h3>Keep the Python shape you already have.</h3>
+            <p>Map a normal function across millions of inputs. Burla handles VM boot, package sync, input routing, and result streaming.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Use the right hardware per step.</h3>
+            <p>Run preprocessing on cheap CPUs, inference on GPUs, and aggregation on high-memory machines without splitting the pipeline across tools.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Stay inside your cloud boundary.</h3>
+            <p>Workers run in your GCP project, with your containers, data, service accounts, network, and storage permissions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="console-section">
+        <div class="console-section__copy">
+          <p class="eyebrow">Local feedback loop</p>
+          <h2>Logs, errors, and outputs come back while the cluster is running.</h2>
+          <p>
+            Burla is built for iterative data work: kill bad runs, watch individual inputs, stream logs,
+            and move from laptop-scale tests to full-cluster execution without changing tools.
+          </p>
+        </div>
+        <div class="dashboard-card" aria-hidden="true">
+          <div class="dashboard-card__bar">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="dashboard-card__body">
+            <div class="dashboard-card__stat">
+              <b>76s</b>
+              <small>2.4TB parquet run</small>
+            </div>
+            <div class="timeline">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="log-lines">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="use-cases">
+        <p class="eyebrow">Built for real batch work</p>
+        <div class="use-case-list">
+          <a href={withBase("/use-cases/run-batch-inference-and-vector-embeddings")}>Batch inference and embeddings</a>
+          <a href={withBase("/examples/multi-stage-genomic-pipeline")}>Genomics on 1000 CPUs</a>
+          <a href={withBase("/examples/process-2.4tb-of-parquet-files-in-76s")}>Parquet and dataframe pipelines</a>
+          <a href={withBase("/how-to/use-custom-docker-images-and-gpus")}>Custom Docker images and GPUs</a>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <p class="eyebrow">Try it now</p>
+        <h2>Run your first 1000-CPU job in minutes.</h2>
+        <div>
+          <a class="button button--primary" href="https://login.burla.dev/">Start free</a>
+          <a class="button button--secondary" href="https://cal.com/jakez/burla?user=jakez&duration=30" target="_blank" rel="noopener">Talk to a founder</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg: #061311;
+    --panel: rgba(255, 255, 255, 0.075);
+    --panel-strong: rgba(255, 255, 255, 0.12);
+    --line: rgba(218, 255, 245, 0.14);
+    --text: #f4fffb;
+    --muted: rgba(244, 255, 251, 0.7);
+    --soft: rgba(244, 255, 251, 0.52);
+    --accent: #76f4c5;
+    --accent-2: #9dc8ff;
+    --dark-accent: #12372f;
+    --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(118, 244, 197, 0.2), transparent 32rem),
+      radial-gradient(circle at 82% 12%, rgba(157, 200, 255, 0.18), transparent 34rem),
+      linear-gradient(180deg, #071b18 0%, #061311 45%, #030807 100%);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .site-shell {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 22px 0 64px;
+  }
+
+  .nav {
+    position: sticky;
+    top: 16px;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    min-height: 64px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: rgba(6, 19, 17, 0.72);
+    box-shadow: 0 18px 70px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(18px);
+  }
+
+  .brand,
+  .nav__links,
+  .hero__actions,
+  .proof-strip,
+  .job-card__top,
+  .dashboard-card__bar,
+  .final-cta div {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand {
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .brand img {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+
+  .nav__links {
+    gap: 24px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .nav__links a:hover {
+    color: var(--text);
+  }
+
+  .nav__cta {
+    justify-self: end;
+    padding: 12px 18px;
+    border-radius: 14px;
+    background: var(--text);
+    color: #071311;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.98fr);
+    gap: 54px;
+    align-items: center;
+    min-height: 720px;
+    padding: 80px 0 48px;
+  }
+
+  .eyebrow {
+    margin: 0 0 18px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h1 {
+    max-width: 780px;
+    font-size: clamp(54px, 7.6vw, 92px);
+    line-height: 0.94;
+    letter-spacing: -0.075em;
+  }
+
+  h2 {
+    max-width: 760px;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+
+  h3 {
+    font-size: 22px;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+
+  .lede {
+    max-width: 640px;
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: 21px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__actions {
+    gap: 12px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .button--primary {
+    background: var(--accent);
+    color: #062019;
+    box-shadow: 0 18px 54px rgba(118, 244, 197, 0.24);
+  }
+
+  .button--secondary {
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+  }
+
+  .proof-strip {
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .proof-strip span {
+    padding: 8px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--soft);
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .hero__visual {
+    position: relative;
+    min-height: 570px;
+  }
+
+  .hero__visual::before {
+    content: "";
+    position: absolute;
+    inset: 34px -10px 0;
+    border-radius: 46px;
+    background:
+      linear-gradient(130deg, rgba(118, 244, 197, 0.22), transparent 48%),
+      linear-gradient(320deg, rgba(157, 200, 255, 0.16), transparent 48%),
+      rgba(255, 255, 255, 0.045);
+    border: 1px solid var(--line);
+    transform: rotate(-2deg);
+  }
+
+  .job-card,
+  .cluster-card,
+  .feature-grid article,
+  .dashboard-card,
+  .metrics div,
+  .final-cta {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.26);
+    backdrop-filter: blur(18px);
+  }
+
+  .job-card {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 26px;
+  }
+
+  .job-card__top {
+    gap: 8px;
+    height: 48px;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+  }
+
+  .dot--red {
+    background: #ff7f7f;
+  }
+
+  .dot--yellow {
+    background: #ffd57e;
+  }
+
+  .dot--green {
+    background: #76f4c5;
+  }
+
+  .job-card__title {
+    margin-left: auto;
+    color: var(--soft);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  pre {
+    margin: 0;
+    padding: 24px;
+    overflow: auto;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .code-pink {
+    color: #ff9bbb;
+  }
+
+  .code-green {
+    color: #8dffcf;
+  }
+
+  .code-muted {
+    color: rgba(244, 255, 251, 0.45);
+  }
+
+  .cluster-card {
+    position: absolute;
+    right: -4px;
+    bottom: 10px;
+    z-index: 2;
+    width: min(440px, 92%);
+    padding: 22px;
+    border-radius: 28px;
+  }
+
+  .cluster-card__label {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--soft);
+    font-size: 13px;
+  }
+
+  .cluster-card strong {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 36px;
+    letter-spacing: -0.055em;
+  }
+
+  .worker-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 8px;
+  }
+
+  .worker-grid span {
+    height: 13px;
+    border-radius: 5px;
+    background: rgba(118, 244, 197, calc(0.22 + (var(--delay) * 0.032)));
+    box-shadow: 0 0 18px rgba(118, 244, 197, 0.16);
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding: 12px 0 92px;
+  }
+
+  .metrics div {
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .metrics strong {
+    display: block;
+    font-size: 38px;
+    letter-spacing: -0.055em;
+  }
+
+  .metrics span {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+  }
+
+  .section,
+  .console-section,
+  .use-cases,
+  .final-cta {
+    margin-top: 28px;
+  }
+
+  .section__heading {
+    margin-bottom: 28px;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .feature-grid article {
+    min-height: 300px;
+    padding: 28px;
+    border-radius: 28px;
+  }
+
+  .feature-grid span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .feature-grid h3 {
+    margin-top: 48px;
+  }
+
+  .feature-grid p {
+    margin-top: 16px;
+    color: var(--muted);
+    line-height: 1.58;
+  }
+
+  .console-section {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 34px;
+    align-items: center;
+    padding: 88px 0 58px;
+  }
+
+  .console-section__copy p:last-child {
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .dashboard-card {
+    overflow: hidden;
+    border-radius: 30px;
+  }
+
+  .dashboard-card__bar {
+    gap: 8px;
+    height: 48px;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dashboard-card__bar span {
+    width: 42px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(244, 255, 251, 0.16);
+  }
+
+  .dashboard-card__body {
+    padding: 26px;
+  }
+
+  .dashboard-card__stat {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 26px;
+  }
+
+  .dashboard-card b {
+    font-size: 70px;
+    line-height: 0.9;
+    letter-spacing: -0.07em;
+  }
+
+  .dashboard-card small {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr 1.4fr 0.9fr 1.2fr;
+    gap: 8px;
+    margin-bottom: 26px;
+  }
+
+  .timeline span {
+    height: 74px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(118, 244, 197, 0.42), rgba(157, 200, 255, 0.16));
+  }
+
+  .log-lines {
+    display: grid;
+    gap: 10px;
+  }
+
+  .log-lines span {
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(244, 255, 251, 0.12);
+  }
+
+  .log-lines span:nth-child(2) {
+    width: 74%;
+  }
+
+  .log-lines span:nth-child(3) {
+    width: 88%;
+  }
+
+  .log-lines span:nth-child(4) {
+    width: 58%;
+  }
+
+  .use-cases {
+    padding: 38px 0 68px;
+  }
+
+  .use-case-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .use-case-list a {
+    min-height: 160px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.045);
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .use-case-list a:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .final-cta {
+    padding: 48px;
+    border-radius: 34px;
+    text-align: center;
+  }
+
+  .final-cta .eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .final-cta h2 {
+    margin: 0 auto;
+  }
+
+  .final-cta div {
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 980px) {
+    .nav {
+      grid-template-columns: 1fr auto;
+    }
+
+    .nav__links {
+      display: none;
+    }
+
+    .hero,
+    .console-section {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .hero {
+      padding-top: 70px;
+    }
+
+    .hero__visual {
+      min-height: 520px;
+    }
+
+    .metrics,
+    .feature-grid,
+    .use-case-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .site-shell {
+      width: min(100% - 28px, 1180px);
+      padding-top: 14px;
+    }
+
+    .nav {
+      top: 10px;
+      min-height: 58px;
+      border-radius: 18px;
+    }
+
+    .nav__cta {
+      padding: 10px 13px;
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+
+    .lede {
+      font-size: 18px;
+    }
+
+    .hero__visual {
+      min-height: 470px;
+    }
+
+    .cluster-card {
+      left: 4%;
+      right: auto;
+      width: 92%;
+    }
+
+    pre {
+      font-size: 12px;
+      padding: 18px;
+    }
+
+    .metrics {
+      padding-bottom: 62px;
+    }
+
+    .feature-grid article {
+      min-height: 240px;
+    }
+
+    .dashboard-card b {
+      font-size: 54px;
+    }
+
+    .final-cta {
+      padding: 32px 20px;
+    }
+  }
+</style>
