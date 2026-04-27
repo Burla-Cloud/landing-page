@@ -112,14 +112,6 @@ export function loadSidebar(): SidebarSection[] {
     }
   }
 
-  for (const section of sections) {
-    section.entries = section.entries.map((entry) => {
-      if (entry.kind !== "link") return entry;
-      if (entry.title === "Other Examples") return { ...entry, title: "Demo walkthroughs" };
-      return entry;
-    });
-  }
-
   const seenHeadings = new Set<string>();
   const uniqueSections = sections.filter((section) => {
     if (!section.heading) return true;
@@ -128,6 +120,14 @@ export function loadSidebar(): SidebarSection[] {
     seenHeadings.add(key);
     return true;
   });
+
+  for (const section of uniqueSections) {
+    section.entries = section.entries.map((entry) => {
+      if (entry.kind !== "link") return entry;
+      if (entry.title === "Other Examples") return { ...entry, title: "Demo walkthroughs" };
+      return entry;
+    });
+  }
 
   const essaysIndex = uniqueSections.findIndex((section) => section.heading?.toLowerCase() === "essays");
   if (essaysIndex > 0) {
