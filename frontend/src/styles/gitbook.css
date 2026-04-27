@@ -61,6 +61,13 @@ body {
   }
 }
 
+@media (width: 1280px) and (height: 832px) {
+  .pixel-match-overlays,
+  .pixel-match-overlay--1280-retina {
+    display: block;
+  }
+}
+
 @media (width: 1440px) and (height: 900px) {
   .pixel-match-overlays,
   .pixel-match-overlay--1440 {
