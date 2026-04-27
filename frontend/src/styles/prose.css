@@ -407,6 +407,12 @@
   .cols .col { gap: 16px; }
 }
 
+@media (min-width: 961px) and (max-width: 1300px) {
+  .prose > h2:nth-of-type(-n + 2) {
+    min-height: 105px;
+  }
+}
+
 /* ── First content heading spacing fix ── */
 .prose > :first-child { margin-top: 0; }
 .prose > h1:first-child, .prose > h2:first-child, .prose > h3:first-child { margin-top: 0; }
