@@ -21,9 +21,20 @@ const URL_ALIASES: Array<[RegExp, string]> = [
 
 function rewriteHref(raw: unknown): string | null {
   if (typeof raw !== "string" || !raw) return null;
-  if (/^(https?:|mailto:|tel:|#)/i.test(raw)) return null;
+  if (/^(mailto:|tel:|#)/i.test(raw)) return null;
 
-  const [pathPart, hashPart = ""] = raw.split("#", 2);
+  let href = raw;
+  if (/^https?:/i.test(href)) {
+    try {
+      const url = new URL(href);
+      if (url.hostname !== "docs.burla.dev" && url.hostname !== "burla.dev") return null;
+      href = `${url.pathname}${url.hash}`;
+    } catch {
+      return null;
+    }
+  }
+
+  const [pathPart, hashPart = ""] = href.split("#", 2);
   let path = pathPart.replace(/\.md$/i, "");
   if (path.startsWith("./")) path = path.slice(2);
   if (path.startsWith("/")) path = path.slice(1);

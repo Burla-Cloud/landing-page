@@ -20,13 +20,27 @@ const URL_PREFIX_ALIASES: Array<[RegExp, string]> = [
 
 function rewriteTarget(raw: string): string | null {
   if (!raw) return null;
-  if (/^(https?:|mailto:|tel:|#|\/)/i.test(raw)) return null;
+  if (/^(mailto:|tel:|#)/i.test(raw)) return null;
 
-  const [pathPart, hashPart = ""] = raw.split("#", 2);
-  if (!/\.md(\?|$)/i.test(pathPart) && !pathPart.endsWith("/")) return null;
+  let href = raw;
+  let isInternalAbsolute = false;
+  if (/^https?:/i.test(href)) {
+    try {
+      const url = new URL(href);
+      if (url.hostname !== "docs.burla.dev" && url.hostname !== "burla.dev") return null;
+      href = `${url.pathname}${url.hash}`;
+      isInternalAbsolute = true;
+    } catch {
+      return null;
+    }
+  }
+
+  const [pathPart, hashPart = ""] = href.split("#", 2);
+  if (!isInternalAbsolute && !/\.md(\?|$)/i.test(pathPart) && !pathPart.endsWith("/")) return null;
 
   let path = pathPart.replace(/\.md$/i, "");
   if (path.startsWith("./")) path = path.slice(2);
+  if (path.startsWith("/")) path = path.slice(1);
 
   if (path === "README" || path === "") {
     return hashPart ? `${BASE}/#${hashPart}` : `${BASE}/`;
