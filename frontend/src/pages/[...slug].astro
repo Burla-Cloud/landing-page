@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import DocLayout from "../layouts/DocLayout.astro";
+import ExamplesIndex from "../components/ExamplesIndex.astro";
 import { idToUrl, urlToSlug, loadSidebarTitleByUrl, loadSectionForUrl } from "../utils/summary";
 
 export async function getStaticPaths() {
@@ -24,6 +25,8 @@ const firstH2 = entry.body?.match(/^##\s+(.+?)\s*$/m)?.[1];
 const displayTitle = url === "/examples" ? "Examples" : sidebarTitle || firstH1 || firstH2 || entry.id;
 
 const fmDescription = (entry.data as { description?: string })?.description?.trim() || undefined;
+const examplesDescription =
+  "Real Burla workloads for ML, data pipelines, production IO, and scientific computing.";
 
 const firstPara = entry.body
   ?.split(/\n\n+/)
@@ -42,12 +45,18 @@ const hasFirstH1 = !!firstH1;
 
 <DocLayout
   title={displayTitle}
-  description={description}
+  description={url === "/examples" ? examplesDescription : description}
   outlineBody={entry.body}
   hideFirstHeading={hasFirstH1}
   pageHeading={displayTitle}
-  pageSubtitle={fmDescription}
+  pageSubtitle={url === "/examples" ? undefined : fmDescription}
   pageSection={section}
 >
-  <Content />
+  {url === "/examples" ? (
+    <ExamplesIndex>
+      <Content />
+    </ExamplesIndex>
+  ) : (
+    <Content />
+  )}
 </DocLayout>

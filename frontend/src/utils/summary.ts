@@ -167,17 +167,17 @@ export function loadDocsNav(): SidebarSection[] {
     {
       heading: "Start here",
       entries: [
-        { kind: "link", title: "Overview", href: "/docs" },
-        { kind: "link", title: "Quickstart", href: "/docs/quickstart" },
-        { kind: "link", title: "API/CLI Reference", href: "/docs/api-reference" },
-        { kind: "link", title: "About", href: "/docs/about" },
+        { kind: "link" as const, title: "Overview", href: "/docs" },
+        { kind: "link" as const, title: "Quickstart", href: "/docs/quickstart" },
+        { kind: "link" as const, title: "API/CLI Reference", href: "/docs/api-reference" },
+        { kind: "link" as const, title: "About", href: "/docs/about" },
       ],
     },
     { heading: "Use Cases", entries: sectionEntries(sections, "Use Cases") },
     { heading: "How To", entries: sectionEntries(sections, "How To") },
     {
       heading: "Examples",
-      entries: [{ kind: "link", title: "All examples", href: "/examples" }, ...examples],
+      entries: [{ kind: "link" as const, title: "All examples", href: "/examples" }, ...examples],
     },
     { heading: "Essays", entries: sectionEntries(sections, "Essays") },
   ].filter((section) => section.entries.length > 0);

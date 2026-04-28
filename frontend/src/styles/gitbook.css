@@ -362,4 +362,8 @@ body {
   .brand {
     justify-self: start;
   }
+
+  .page--examples .sidebar {
+    display: none;
+  }
 }

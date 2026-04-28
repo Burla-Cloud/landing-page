@@ -41,7 +41,7 @@ const showDocsNav = title !== "Home";
   </head>
   <body>
     <Header />
-    <div class:list={["page", { "page--home": !showDocsNav, "page--docs-nav": showDocsNav, "page--with-outline": showOutline }]}>
+    <div class:list={["page", { "page--home": !showDocsNav, "page--docs-nav": showDocsNav, "page--with-outline": showOutline, "page--examples": pageSection === "Examples" }]}>
       {showDocsNav && <Sidebar currentPath={pathname} />}
       <main class="content">
         <article class:list={["prose", { "prose--hide-h1": hideFirstHeading }]}>
@@ -102,6 +102,29 @@ const showDocsNav = title !== "Home";
           }
         });
         pre.appendChild(btn);
+      }
+
+      for (const table of document.querySelectorAll<HTMLTableElement>('table[data-view="cards"]')) {
+        const iconHref = document.querySelector<HTMLLinkElement>('link[rel="icon"]')!.href;
+        const assetBase = iconHref.replace(/\/favicon\.svg$/, "/gitbook-assets");
+        const grid = document.createElement("div");
+        grid.className = "example-card-grid";
+        for (const row of table.querySelectorAll<HTMLTableRowElement>("tbody tr")) {
+          const cells = row.querySelectorAll<HTMLTableCellElement>("td");
+          const link = cells[2]!.querySelector<HTMLAnchorElement>("a")!;
+          const slug = new URL(link.href).pathname.split("/").filter(Boolean).pop()!;
+          const card = document.createElement("a");
+          card.className = "example-card";
+          card.href = link.href;
+          card.innerHTML = `
+            <div class="example-card__media"><img src="${assetBase}/more-examples/${slug}.png" alt="" loading="lazy" /></div>
+            <div class="example-card__title">${cells[0]!.innerHTML}</div>
+            <div class="example-card__description">${cells[1]!.innerHTML}</div>
+            <span class="example-card__cta">Read example</span>
+          `;
+          grid.appendChild(card);
+        }
+        table.replaceWith(grid);
       }
     </script>
   </body>
