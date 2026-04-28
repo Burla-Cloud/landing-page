@@ -1,21 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Burla | Cloud Parallel Python</title>
-    <meta
-      name="description"
-      content="Run any Python function on thousands of cloud computers with one function call."
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <script type="module" crossorigin src="/assets/index-Ba2lCRjP.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D2UGlBj6.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Burla</title><meta name="description" content="Burla is a high-performance parallel processing library for data-teams that iterate quickly. Scale Python across 1000 CPUs or GPUs in 1 second."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><link rel="stylesheet" href="/_astro/_slug_.COMOeaTV.css"></head> <body> <header class="site-header"> <div class="site-header__inner"> <a class="brand" href="/" aria-label="Burla home"> <span class="brand__mark" aria-hidden="true"> <img src="/logo_small.svg" alt=""> </span> <span class="brand__name">Burla</span> </a> <nav class="site-header__center" aria-label="Primary"> <a class="top-link" href="/docs/quickstart">Quickstart</a> <a class="top-link" href="/docs">Docs</a> <a class="top-link" href="/examples">Examples</a> </nav> <nav class="site-header__actions" aria-label="Account"> <a class="text-link text-link--button" href="https://login.burla.dev/">Sign in</a> <a class="btn btn--primary" href="https://login.burla.dev/">Try it now</a> </nav> </div> </header> <div class="page page--home">  <main class="content"> <article class="prose prose--hide-h1">     <h1 id="home"><a class="heading-anchor" aria-label="Direct link to heading" href="#home"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Home</h1>
+<h2 id="scale-python-across-1000-cpus-or-gpus-in-1-second"><a class="heading-anchor" aria-label="Direct link to heading" href="#scale-python-across-1000-cpus-or-gpus-in-1-second"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Scale Python across 1000 CPUs or GPUs in 1 second.</h2>
+<p>Burla is a high-performance parallel processing library for data-teams that iterate quickly.<br>
+Run vector embeddings, inference, or preprocessing inside your cloud with instant feedback.</p>
+<p>Burla only has one function:</p>
+<pre class="astro-code gitbook-light" style="background-color:#ffffff;color:#191e1f; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="py"><code><span class="line"><span style="color:#E40021">from</span><span style="color:#191E1F"> burla </span><span style="color:#E40021">import</span><span style="color:#191E1F"> remote_parallel_map</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#191E1F">my_inputs </span><span style="color:#59737A">=</span><span style="color:#5F7F8A"> list</span><span style="color:#59737A">(</span><span style="color:#BB5C00">range</span><span style="color:#59737A">(</span><span style="color:#BB5C00">1000</span><span style="color:#59737A">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E40021">def</span><span style="color:#5F7F8A"> my_function</span><span style="color:#59737A">(</span><span style="color:#BB5C00">x</span><span style="color:#59737A">):</span></span>
+<span class="line"><span style="color:#BB5C00">    print</span><span style="color:#59737A">(</span><span style="color:#E40021">f</span><span style="color:#009817">"[#</span><span style="color:#191E1F">{x}</span><span style="color:#009817">] running on separate computer"</span><span style="color:#59737A">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#191E1F">remote_parallel_map</span><span style="color:#59737A">(</span><span style="color:#191E1F">my_function</span><span style="color:#59737A">,</span><span style="color:#191E1F"> my_inputs</span><span style="color:#59737A">)</span></span></code></pre>
+<p>This runs <code>my_function</code> on 1000 vms in less than one second:</p>
+<figure><img src="/gitbook-assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
+<h2 id="the-cleanest-way-to-build-data-pipelines-that-scale"><a class="heading-anchor" aria-label="Direct link to heading" href="#the-cleanest-way-to-build-data-pipelines-that-scale"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>The cleanest way to build data-pipelines that scale.</h2>
+<p>Zero special syntax. Change containers, hardware, or cluster-size automatically mid-workload.</p>
+<p>Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and any Docker container.<br>
+Pipelines built with Burla are simpler, more maintainable, faster, and more fun to develop!</p>
+<pre class="astro-code gitbook-light" style="background-color:#ffffff;color:#191e1f; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#191E1F">remote_parallel_map</span><span style="color:#59737A">(</span><span style="color:#191E1F">process</span><span style="color:#59737A">,</span><span style="color:#59737A"> [</span><span style="color:#191E1F">...</span><span style="color:#59737A">],</span><span style="color:#BB5C00"> image</span><span style="color:#59737A">=</span><span style="color:#59737A">"</span><span style="color:#009817">osgeo/gdal:latest</span><span style="color:#59737A">"</span><span style="color:#59737A">)</span></span>
+<span class="line"><span style="color:#191E1F">remote_parallel_map</span><span style="color:#59737A">(</span><span style="color:#191E1F">aggregate</span><span style="color:#59737A">,</span><span style="color:#59737A"> [</span><span style="color:#191E1F">...</span><span style="color:#59737A">],</span><span style="color:#BB5C00"> func_cpu</span><span style="color:#59737A">=</span><span style="color:#BB5C00">64</span><span style="color:#59737A">)</span></span>
+<span class="line"><span style="color:#191E1F">remote_parallel_map</span><span style="color:#59737A">(</span><span style="color:#191E1F">predict</span><span style="color:#59737A">,</span><span style="color:#59737A"> [</span><span style="color:#191E1F">...</span><span style="color:#59737A">],</span><span style="color:#BB5C00"> func_gpu</span><span style="color:#59737A">=</span><span style="color:#59737A">"</span><span style="color:#009817">A100</span><span style="color:#59737A">"</span><span style="color:#59737A">)</span></span></code></pre>
+<p>This creates a pipeline like:</p>
+<figure><img src="/gitbook-assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
+<h3 id="monitor-progress-in-the-dashboard"><a class="heading-anchor" aria-label="Direct link to heading" href="#monitor-progress-in-the-dashboard"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Monitor progress in the dashboard:</h3>
+<p>Cancel bad runs, filter logs to watch individual inputs, or monitor output files in the UI.</p>
+<figure><img src="/gitbook-assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
+<h2 id="how-it-works"><a class="heading-anchor" aria-label="Direct link to heading" href="#how-it-works"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>How it works:</h2>
+<p>Remote development, local feel. With Burla hardware is defined </p>
+<pre class="astro-code gitbook-light" style="background-color:#ffffff;color:#191e1f; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#191E1F">return_values </span><span style="color:#59737A">=</span><span style="color:#191E1F"> remote_parallel_map</span><span style="color:#59737A">(</span><span style="color:#191E1F">my_function</span><span style="color:#59737A">,</span><span style="color:#191E1F"> my_inputs</span><span style="color:#59737A">)</span></span></code></pre>
+<p>When functions are run with <code>remote_parallel_map</code>:</p>
+<ul>
+<li>Anything they print appears locally (and inside the dashboard).</li>
+<li>Any exceptions are thrown locally.</li>
+<li>Any packages or local modules are (very quickly) cloned on remote machines.</li>
+<li>Code starts running in under one second! Even with millions of inputs or thousands of machines.</li>
+</ul>
+<h3 id="features"><a class="heading-anchor" aria-label="Direct link to heading" href="#features"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Features:</h3>
+<div class="cols">
+<div class="col" style="flex-basis: 50%;">
+<p><strong>📦  Automatic Package Sync</strong></p>
+<p>Burla automatically (and very quickly) clones your Python packages on every remote machine where code is executed.</p>
+<p><strong>🐋  Custom Containers</strong></p>
+<p>Easily run code in any Docker container.<br>
+Public or private, just paste an image URI in the settings, then hit start!</p>
+</div>
+<div class="col" style="flex-basis: 50%;">
+<p><strong>📂  Network Filesystem</strong></p>
+<p>Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to a folder in every container.</p>
+<p><strong>⚙️  Variable Hardware Per-Function</strong></p>
+<p>The <code>func_cpu</code> and <code>func_ram</code> args make it possible to assign big hardware to some functions, and less to others.</p>
+</div>
+</div>
+<hr>
+<h2 id="pricing"><a class="heading-anchor" aria-label="Direct link to heading" href="#pricing"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Pricing:</h2>
+<p>Free for Hobbyists. Compute prices the same as Google Cloud.</p>
+<div class="cols">
+<div class="col">
+<h3 id="self-hosted-in-your-cloud"><a class="heading-anchor" aria-label="Direct link to heading" href="#self-hosted-in-your-cloud"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Self-Hosted: (in your cloud)</h3>
+</div>
+<div class="col">
+<h3 id="managed-in-burlas-cloud"><a class="heading-anchor" aria-label="Direct link to heading" href="#managed-in-burlas-cloud"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Managed: (in Burla's cloud)</h3>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>✔ $100/month per Enterprise User.</th><th>✔  $100/month per Enterprise User.</th></tr></thead><tbody><tr><td>✅ Free for all non-commercial use.</td><td>✅ 100% Identical pricing to <a href="https://cloud.google.com/pricing">Google Cloud</a>.</td></tr><tr><td></td><td>✅ $500 in free credits for qualified users.</td></tr></tbody></table>
+<h2 id="getting-started"><a class="heading-anchor" aria-label="Direct link to heading" href="#getting-started"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Getting Started:</h2>
+<h4 id="self-host-with-one-command"><a class="heading-anchor" aria-label="Direct link to heading" href="#self-host-with-one-command"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Self-Host with one command:</h4>
+<p>Run <code>burla install</code> to deploy our self-hosted web-service.<br>
+Learn more about permissions and installation in our getting started guide:</p>
+<a class="page-card" href="/docs/quickstart#quickstart-self-hosted-runs-in-your-cloud" target="_blank" rel="noopener">
+    <span class="page-card__logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+    </span>
+    <span class="page-card__body">
+      <span class="page-card__title">/docs/quickstart#quickstart-self-hosted-runs-in-your-cloud</span>
+      <span class="page-card__host">/docs/quickstart#quickstart-self-hosted-runs-in-your-cloud</span>
+    </span>
+    <span class="page-card__chevron" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+    </span>
+  </a>
+<h4 id="try-the-1000-cpu-quickstart-its-free-and-takes-2-minutes"><a class="heading-anchor" aria-label="Direct link to heading" href="#try-the-1000-cpu-quickstart-its-free-and-takes-2-minutes"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Try the 1000-CPU Quickstart, it's free and takes 2 minutes:</h4>
+<ol>
+<li><a href="https://login.burla.dev/">Sign in</a> using your Google or Microsoft account.</li>
+<li>Run our quickstart in this Google Colab notebook:</li>
+</ol>
+<a class="page-card" href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" target="_blank" rel="noopener">
+    <span class="page-card__logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+    </span>
+    <span class="page-card__body">
+      <span class="page-card__title">Google Colab</span>
+      <span class="page-card__host">colab.research.google.com</span>
+    </span>
+    <span class="page-card__chevron" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+    </span>
+  </a>
+<hr>
+<p>Questions?<br>
+<a href="http://cal.com/jakez/burla">Schedule a call</a>, or email <strong><a href="mailto:jake@burla.dev">jake@burla.dev</a></strong>. We're always happy to talk.</p>  </article> </main>  </div> <script type="module">const t={primary:"rgb(95, 127, 138)",warning:"rgb(187, 92, 0)",text:"rgb(25, 30, 31)"},p=(r,e)=>{const n=document.createElement("span");return n.textContent=r,n.style.color=e,n};for(const r of document.querySelectorAll("pre.astro-code code .line > span")){const e=r.textContent??"",n=e===" list"?[[" ",t.text],["list",t.warning]]:e==="range"?[["range",t.primary]]:e===" my_function"?[[" ",t.text],["my_function",t.primary]]:e==="    print"?[["    ",t.text],["print",t.primary]]:e==="{x}"?[["{",t.warning],["x",t.primary],["}",t.warning]]:e==="remote_parallel_map"?[["remote_parallel_map",t.primary]]:e==="my_function"?[["my_function",t.primary]]:e===" my_inputs"?[[" my_inputs",t.primary]]:[];n.length&&r.replaceWith(...n.map(([a,c])=>p(a,c)))}for(const r of document.querySelectorAll("pre.astro-code")){if(r.querySelector(".code-copy"))continue;const e=document.createElement("button");e.className="code-copy",e.type="button",e.setAttribute("aria-label","Copy code"),e.innerHTML="Copy",e.addEventListener("click",async()=>{const n=r.querySelector("code");if(n)try{await navigator.clipboard.writeText(n.textContent??""),e.innerHTML="Copied",setTimeout(()=>e.innerHTML="Copy",1400)}catch{e.innerHTML="Error"}}),r.appendChild(e)}for(const r of document.querySelectorAll('table[data-view="cards"]')){const n=document.querySelector('link[rel="icon"]').href.replace(/\/favicon\.svg$/,"/gitbook-assets"),a=document.createElement("div");a.className="example-card-grid";for(const c of r.querySelectorAll("tbody tr")){const l=c.querySelectorAll("td"),i=l[2].querySelector("a"),s=new URL(i.href).pathname.split("/").filter(Boolean).pop(),o=document.createElement("a");o.className="example-card",o.href=i.href,o.innerHTML=`
+            <div class="example-card__media"><img src="${n}/more-examples/${s}.png" alt="" loading="lazy" /></div>
+            <div class="example-card__title">${l[0].innerHTML}</div>
+            <div class="example-card__description">${l[1].innerHTML}</div>
+            <span class="example-card__cta">Read example</span>
+          `,a.appendChild(o)}r.replaceWith(a)}</script> </body> </html>

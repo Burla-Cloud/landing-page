@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>API/CLI Reference | Burla</title><meta name="description" content="Run a Python function on many remote computers at the same time."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>.examples-catalog[data-astro-cid-ngolm6s5]{display:grid;gap:28px}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.COMOeaTV.css"></head> <body> <header class="site-header"> <div class="site-header__inner"> <a class="brand" href="/" aria-label="Burla home"> <span class="brand__mark" aria-hidden="true"> <img src="/logo_small.svg" alt=""> </span> <span class="brand__name">Burla</span> </a> <nav class="site-header__center" aria-label="Primary"> <a class="top-link" href="/docs/quickstart">Quickstart</a> <a class="top-link" href="/docs">Docs</a> <a class="top-link" href="/examples">Examples</a> </nav> <nav class="site-header__actions" aria-label="Account"> <a class="text-link text-link--button" href="https://login.burla.dev/">Sign in</a> <a class="btn btn--primary" href="https://login.burla.dev/">Try it now</a> </nav> </div> </header> <div class="page page--docs-nav page--with-outline"> <aside class="sidebar" aria-label="Documentation navigation"> <nav class="sidebar__inner"> <div class="nav-section"> <div class="nav-section__heading">Start here</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs"> Overview </a> </li><li> <a class="nav-item" href="/docs/quickstart"> Quickstart </a> </li><li> <a class="nav-item nav-item--active" href="/docs/api-reference"> API/CLI Reference </a> </li><li> <a class="nav-item" href="/docs/about"> About </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">Use Cases</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs/use-cases/process-thousands-of-files-quickly"> Process thousands of files quickly. </a> </li><li> <a class="nav-item" href="/docs/use-cases/process-one-giant-file-quickly"> Process one giant file quickly. </a> </li><li> <a class="nav-item" href="/docs/use-cases/process-data-in-your-database-quickly"> Process data in your database quickly. </a> </li><li> <a class="nav-item" href="/docs/use-cases/more-use-cases"> More use cases </a> </li><li> <a class="nav-item" href="/docs/use-cases/run-batch-inference-and-vector-embeddings"> Run batch inference and vector embeddings </a> </li><li> <a class="nav-item" href="/docs/use-cases/run-pipeline-stages-on-different-hardware"> Run pipeline stages on different hardware </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">How To</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs/how-to/read-and-write-gcs-files"> Read/Write Files to Cloud Storage. </a> </li><li> <a class="nav-item" href="/docs/how-to/choose-how-to-split-your-work"> Choose how to split your work </a> </li><li> <a class="nav-item" href="/docs/how-to/combine-many-results-files-into-one-map-reduce"> Combine many results/files into one. (Map-Reduce) </a> </li><li> <a class="nav-item" href="/docs/how-to/more-how-to-articles"> More how to articles </a> </li><li> <a class="nav-item" href="/docs/how-to/limit-parallelism-for-apis-databases-and-websites"> Limit parallelism for APIs, databases, and websites </a> </li><li> <a class="nav-item" href="/docs/how-to/use-custom-docker-images-and-gpus"> Use custom Docker images and GPUs </a> </li><li> <a class="nav-item" href="/docs/how-to/run-python-in-the-background"> Run jobs in the background. </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">Examples</div> <ul class="nav-list"> <li> <a class="nav-item" href="/examples"> All examples </a> </li><li> <a class="nav-item" href="/examples/process-2.4tb-of-parquet-files-in-76s"> Process 2.4TB of Parquet Files in 76s </a> </li><li> <a class="nav-item" href="/examples/parallel-hyperparameter-tuning"> Parallel Hyperparameter Tuning </a> </li><li> <a class="nav-item" href="/examples/multi-stage-genomic-pipeline"> Genomic Pipeline on 1,000 CPUs </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#ml-embeddings-and-search"> ML, embeddings, and search </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#full-corpus-analysis"> Full-corpus analysis </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#production-data-jobs"> Production data jobs </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#scientific-and-geospatial-work"> Scientific and geospatial work </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">Essays</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs/essays/the-experiment-you-dont-run"> The Question You Asked Is Not the Experiment You Ran </a> </li><li> <a class="nav-item" href="/docs/essays/stop-designing-the-cluster"> Stop Designing the Cluster </a> </li> </ul> </div> </nav> </aside> <main class="content"> <article class="prose prose--hide-h1"> <div class="prose__section-label">Start here</div> <h1 class="prose__page-title">API/CLI Reference</h1>  <h1 id="apicli-reference"><a class="heading-anchor" aria-label="Direct link to heading" href="#apicli-reference"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>API/CLI Reference</h1>
+<h2 id="api-reference"><a class="heading-anchor" aria-label="Direct link to heading" href="#api-reference"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>API-Reference</h2>
+<h3 id="burlaremote_parallel_map"><a class="heading-anchor" aria-label="Direct link to heading" href="#burlaremote_parallel_map"><span class="heading-anchor__icon" aria-hidden="true">#</span></a><code>burla.remote_parallel_map</code></h3>
+<p>Run a Python function on many remote computers at the same time.</p>
+<pre class="astro-code gitbook-light" style="background-color:#ffffff;color:#191e1f; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#191E1F">remote_parallel_map</span><span style="color:#59737A">(</span></span>
+<span class="line"><span style="color:#191E1F">  function_</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#191E1F">  inputs</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  func_cpu</span><span style="color:#59737A">=</span><span style="color:#BB5C00">1</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  func_ram</span><span style="color:#59737A">=</span><span style="color:#BB5C00">4</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  func_gpu</span><span style="color:#59737A">=</span><span style="color:#191E1F">None</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  image</span><span style="color:#59737A">=</span><span style="color:#191E1F">None</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  grow</span><span style="color:#59737A">=</span><span style="color:#191E1F">False</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  max_parallelism</span><span style="color:#59737A">=</span><span style="color:#191E1F">None</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  detach</span><span style="color:#59737A">=</span><span style="color:#191E1F">False</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  generator</span><span style="color:#59737A">=</span><span style="color:#191E1F">False</span><span style="color:#59737A">,</span></span>
+<span class="line"><span style="color:#BB5C00">  spinner</span><span style="color:#59737A">=</span><span style="color:#191E1F">True</span></span>
+<span class="line"><span style="color:#59737A">)</span></span></code></pre>
+<p>Run provided <code>function_</code> on each item in <code>inputs</code> in at the same time using all available workers.<br>
+Extra inputs are queued and processed sequentially on each worker.</p>
+<p>If <code>grow=True</code> automatically boots and assigns additional workers to minimize runtime.</p>
+<p>While running:</p>
+<ul>
+<li>If the provided <code>function_</code> raises an exception, the exception is raised on the client machine.</li>
+<li>Your print statements (anything written to stdout/stderr) are streamed back to your local machine, appearing like they would have if running the same code locally.</li>
+</ul>
+<p>When finished <code>remote_parallel_map</code> returns a list of objects returned by each <code>function_</code> call.<br>
+Optionally, it can return a generator that yields results as they become available.</p>
+<table data-header-hidden=""><thead><tr><th width="181.25390625"></th><th></th></tr></thead><tbody><tr><td><strong>Parameters</strong></td><td></td></tr><tr><td><strong>Name</strong></td><td><strong>Description</strong></td></tr><tr><td><code>function_</code></td><td><p><code>Callable</code></p><p>Any python function that is &#x3C;100MB (1M lines) when pickled. </p></td></tr><tr><td><code>inputs</code></td><td><p><code>List[Any]</code></p><p>List of elements passable to <code>function_</code>.<br>Tuples are unpacked into *args by default.</p></td></tr><tr><td><code>func_cpu</code></td><td><p><code>int</code></p><p>(Optional) Number of CPU's made available to each running instance of <code>function_</code>. Max possible value is determined by your cluster machine type. Defaults to 1.</p></td></tr><tr><td><code>func_ram</code></td><td><p><code>int</code></p><p>(Optional) Amount of RAM (GB) made available to each running instance of <code>function_</code>. Max possible value is determined by your cluster machine type. Defaults to 4.</p></td></tr><tr><td><code>func_gpu</code></td><td><p><code>str</code></p><p>(Optional) Allocate one GPU per call to <code>function_</code>. One of: <code>"A100"</code> / <code>"A100_40G"</code>, <code>"A100_80G"</code>, <code>"H100"</code> / <code>"H100_80G"</code>. Defaults to <code>None</code> (no GPU).</p></td></tr><tr><td><code>image</code></td><td><p><code>str</code></p><p>(Optional) If provided, only nodes running this container image are eligible. When <code>grow=True</code> and no matching nodes are available, newly booted nodes will run this image. Defaults to <code>None</code> (no image filter).</p></td></tr><tr><td><code>grow</code></td><td><code>bool</code><br>(Optional) Automatically adds additional nodes to complete the provided work as quickly as possible. These nodes inherit existing settings.</td></tr><tr><td><code>max_parallelism</code></td><td><p><code>int</code></p><p>(Optional) Maximum number of <code>function_</code> instances allowed to be running at the same time.</p></td></tr><tr><td><code>detach</code></td><td><code>bool</code><br>(Optional) Job will continue to run independently on the cluster if stopped locally. Detached jobs can run in the background indefinitely.</td></tr><tr><td><code>generator</code></td><td><code>bool</code><br>(Optional) Set to <code>True</code> to return a <code>Generator</code> instead of a <code>List</code>. The generator will yield outputs as they are produced, instead of all at once at the end.</td></tr><tr><td><code>spinner</code></td><td><p><code>bool</code></p><p>(Optional) Set to <code>False</code> to hide the status indicator/spinner.</p></td></tr></tbody></table>
+<table data-header-hidden=""><thead><tr><th width="180.60546875"></th><th></th></tr></thead><tbody><tr><td><strong>Returns</strong></td><td></td></tr><tr><td><strong>Type</strong></td><td><strong>Description</strong></td></tr><tr><td><code>List</code> or <code>Generator</code></td><td>List of objects returned by <code>function_</code> in no particular order. If <code>Generator=True</code>, returns generator yielding objects returned by <code>function_</code> in the order they are produced.</td></tr></tbody></table>
+<hr>
+<p> </p>
+<h2 id="cli-reference"><a class="heading-anchor" aria-label="Direct link to heading" href="#cli-reference"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>CLI-Reference</h2>
+<p>Burla's CLI contains the following commands:</p>
+<ul>
+<li><a href="/docs/api-reference#burla-install"><code>burla install</code></a>  Deploy self-hosted Burla in your Google Cloud project.</li>
+<li><a href="/docs/api-reference#burla-login"><code>burla login</code></a>  Connect your computer to the cluster you last logged into in the browser.</li>
+</ul>
+<p>The global arg <code>--help</code> can be placed after any command or command group to see CLI documentation.</p>
+<hr>
+<h3 id="burla-install"><a class="heading-anchor" aria-label="Direct link to heading" href="#burla-install"><span class="heading-anchor__icon" aria-hidden="true">#</span></a><code>burla install</code></h3>
+<p>Deploy a self-hosted Burla instance in your current Google Cloud Project.<br>
+Running <code>burla install</code> multiple times will update the existing installation with the latest version.</p>
+<p><strong>Description:</strong></p>
+<p>Installs Burla inside the Google Cloud project that your <a href="https://cloud.google.com/sdk/gcloud">gcloud CLI</a> is currently pointing to.<br>
+For a more user-friendly installation guide see: <a href="/docs/quickstart">Installation: Self-Hosted</a></p>
+<p>To view your current gcloud project run: <code>gcloud config get project</code><br>
+To change your current gcloud project run: <code>gcloud config set project &#x3C;desired-project-id></code></p>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>Have the <a href="https://cloud.google.com/sdk/gcloud">gcloud CLI</a> installed (<a href="https://cloud.google.com/sdk/docs/install">how do I install the gcloud CLI?</a>).</li>
+<li>Be logged in to the <a href="https://cloud.google.com/sdk/gcloud">gcloud CLI</a> (<a href="https://cloud.google.com/sdk/docs/authorizing#user-account">how do I log in?</a>)<br>
+(<code>gcloud auth login</code> &#x26; <code>gcloud auth application-default login</code>)</li>
+<li>Have a Google Cloud user account with the minimum required permissions to install Burla.<br>
+<strong>Or:</strong> Just run <code>burla install</code>, if you're missing any permissions it will tell you which ones!</li>
+</ul>
+<p>Here is the set of permissions you'll need to run <code>burla install</code>:<br>
+Any of these three permission set's will work.</p>
+<details>
+<summary>Simplest possible permissions</summary>
+<p>Burla can be installed by users having the project editor (<code>roles/editor</code>) role.</p>
+</details>
+<details>
+<summary>Service admin based permissions (more specific)</summary>
+<p>Burla can be installed by users having the following generic roles:</p>
+<ol>
+<li>Service Usage Admin (<code>roles/serviceusage.serviceUsageAdmin</code>)</li>
+<li>Cloud Run Admin (<code>roles/run.admin</code>)</li>
+<li>Compute Network Admin (<code>roles/compute.networkAdmin</code>)</li>
+<li>Secret Manager Admin (<code>roles/secretmanager.admin</code>)</li>
+<li>Service Account Admin (<code>roles/iam.serviceAccountAdmin</code>)</li>
+<li>Service Account Key Admin (<code>roles/iam.serviceAccountKeyAdmin</code>)</li>
+<li>Project IAM Admin (<code>roles/resourcemanager.projectIamAdmin</code>)</li>
+<li>Firestore / Datastore Owner (<code>roles/datastore.owner</code>)</li>
+</ol>
+</details>
+<details>
+<summary>Exact minimum required permissions (very specific) (IAM role)</summary>
+<p>Below is an IAM role definition for this minimum installer permission set.</p>
+<p>To create this IAM role, put the lower text in a file called <code>burla-installer-role.yaml</code>.<br>
+Then run the following command:</p>
+<pre class="astro-code gitbook-light" style="background-color:#ffffff;color:#191e1f; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#191E1F">PROJECT_ID</span><span style="color:#59737A">=</span><span style="color:#59737A">"$(</span><span style="color:#5F7F8A">gcloud</span><span style="color:#009817"> config get-value project</span><span style="color:#59737A">)"</span></span>
+<span class="line"><span style="color:#5F7F8A">gcloud</span><span style="color:#009817"> iam</span><span style="color:#009817"> roles</span><span style="color:#009817"> create</span><span style="color:#009817"> burlaInstaller</span><span style="color:#191E1F"> \</span></span>
+<span class="line"><span style="color:#009817">  --project</span><span style="color:#59737A"> "$</span><span style="color:#009817">PROJECT_ID</span><span style="color:#59737A">"</span><span style="color:#191E1F"> \</span></span>
+<span class="line"><span style="color:#009817">  --file</span><span style="color:#009817"> burla-installer-role.yaml</span></span></code></pre>
+<p>Contents of <code>burla-installer-role.yaml</code>:</p>
+<pre class="astro-code gitbook-light" style="background-color:#ffffff;color:#191e1f; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#009817">title</span><span style="color:#59737A">:</span><span style="color:#59737A"> "</span><span style="color:#009817">Burla Installer</span><span style="color:#59737A">"</span></span>
+<span class="line"><span style="color:#009817">description</span><span style="color:#59737A">:</span><span style="color:#59737A"> "</span><span style="color:#009817">Minimum permissions required to install Burla</span><span style="color:#59737A">"</span></span>
+<span class="line"><span style="color:#009817">stage</span><span style="color:#59737A">:</span><span style="color:#59737A"> "</span><span style="color:#009817">GA</span><span style="color:#59737A">"</span></span>
+<span class="line"><span style="color:#009817">includedPermissions</span><span style="color:#59737A">:</span></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Enable required APIs</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> serviceusage.services.enable</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> serviceusage.services.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> serviceusage.services.list</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Read project number + set project IAM bindings</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> resourcemanager.projects.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> resourcemanager.projects.getIamPolicy</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> resourcemanager.projects.setIamPolicy</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Firewall rule for cluster nodes</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> compute.firewalls.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> compute.firewalls.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> compute.firewalls.list</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Create + manage bucket</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> storage.buckets.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> storage.buckets.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> storage.buckets.list</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> storage.buckets.update</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Secret for cluster token + IAM bindings + versions</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> secretmanager.secrets.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> secretmanager.secrets.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> secretmanager.secrets.list</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> secretmanager.secrets.getIamPolicy</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> secretmanager.secrets.setIamPolicy</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> secretmanager.versions.add</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> secretmanager.versions.access</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Create service accounts, grant them roles, rotate keys, and use them for Cloud Run deploy</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccounts.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccounts.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccounts.list</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccounts.getIamPolicy</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccounts.setIamPolicy</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccounts.actAs</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccountKeys.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccountKeys.list</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> iam.serviceAccountKeys.delete</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Create Firestore database + write initial config doc via Firestore client</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> datastore.databases.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> datastore.databases.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> datastore.entities.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> datastore.entities.update</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> datastore.entities.get</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#59737A">  #</span><span style="color:#191E1F"> Deploy and configure Cloud Run service</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> run.services.create</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> run.services.get</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> run.services.list</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> run.services.update</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> run.services.getIamPolicy</span></span>
+<span class="line"><span style="color:#59737A">  -</span><span style="color:#009817"> run.services.setIamPolicy</span></span></code></pre>
+</details>
+<p>These permissions are only required to <strong>install</strong> Burla, they are <strong>not</strong> granted to the Burla service itself.<br>
+Upon install Burla creates a service account for itself having <a href="https://github.com/Burla-Cloud/burla/blob/2e027b57c9e9309587b89a1024c84851998304db/client/src/burla/_install.py#L427-L453">this minimum set of permissions</a>.</p>
+<aside class="hint hint--info" role="note">
+<p>On install, your Google account (the one you are currently logged in to <code>gcloud</code> with) is set as the only account authorized to access this new Burla deployment.</p>
+</aside>
+<p>We encourage you to check out <a href="https://github.com/Burla-Cloud/burla/blob/main/client/src/burla/_install.py">_install.py</a> in the client for even more specific installation details.</p>
+<hr>
+<p> </p>
+<h3 id="burla-login"><a class="heading-anchor" aria-label="Direct link to heading" href="#burla-login"><span class="heading-anchor__icon" aria-hidden="true">#</span></a><code>burla login</code></h3>
+<p>Connects your computer to the Burla cluster you most recently logged into in your browser.<br>
+Authorizes your machine to call <code>remote_parallel_map</code> on this cluster.</p>
+<p><strong>Description:</strong></p>
+<p>Launches the "Authorize this Machine" page in your default web browser.</p>
+<p>If there is no auth-cookie (you have not yet logged into the dashboard), throws simple error requesting you login to your cluster dashboard first.</p>
+<p>When the "Authorize" button is hit, a new auth token is created and sent to your machine. </p>
+<p>This token is saved in the text file <code>burla_credentials.json</code>. This file is stored in your operating system's recommended user data directory which is determined using the <a href="https://github.com/ActiveState/appdirs">appdirs</a> python library.</p>
+<p>This token is refreshed each time the <code>burla login</code> is run, or certain amount of time passes.</p>
+<p> </p>
+<p> </p>
+<hr>
+<p>Questions?<br>
+<a href="https://cal.com/jakez/burla/">Schedule a call with us</a>, or email <strong><a href="mailto:jake@burla.dev">jake@burla.dev</a></strong>. We're always happy to talk.</p> </article> </main> <aside class="outline" aria-label="On this page"><div class="outline__heading">On this page</div><ul class="outline__list"><li><a class="outline__link outline__link--h2" href="#api-reference">API-Reference</a></li><li><a class="outline__link outline__link--h3" href="#burlaremoteparallelmap">burla.remoteparallelmap</a></li><li><a class="outline__link outline__link--h2" href="#cli-reference">CLI-Reference</a></li><li><a class="outline__link outline__link--h3" href="#burla-install">burla install</a></li><li><a class="outline__link outline__link--h3" href="#burla-login">burla login</a></li></ul></aside> </div> <script type="module">const t={primary:"rgb(95, 127, 138)",warning:"rgb(187, 92, 0)",text:"rgb(25, 30, 31)"},p=(r,e)=>{const n=document.createElement("span");return n.textContent=r,n.style.color=e,n};for(const r of document.querySelectorAll("pre.astro-code code .line > span")){const e=r.textContent??"",n=e===" list"?[[" ",t.text],["list",t.warning]]:e==="range"?[["range",t.primary]]:e===" my_function"?[[" ",t.text],["my_function",t.primary]]:e==="    print"?[["    ",t.text],["print",t.primary]]:e==="{x}"?[["{",t.warning],["x",t.primary],["}",t.warning]]:e==="remote_parallel_map"?[["remote_parallel_map",t.primary]]:e==="my_function"?[["my_function",t.primary]]:e===" my_inputs"?[[" my_inputs",t.primary]]:[];n.length&&r.replaceWith(...n.map(([a,c])=>p(a,c)))}for(const r of document.querySelectorAll("pre.astro-code")){if(r.querySelector(".code-copy"))continue;const e=document.createElement("button");e.className="code-copy",e.type="button",e.setAttribute("aria-label","Copy code"),e.innerHTML="Copy",e.addEventListener("click",async()=>{const n=r.querySelector("code");if(n)try{await navigator.clipboard.writeText(n.textContent??""),e.innerHTML="Copied",setTimeout(()=>e.innerHTML="Copy",1400)}catch{e.innerHTML="Error"}}),r.appendChild(e)}for(const r of document.querySelectorAll('table[data-view="cards"]')){const n=document.querySelector('link[rel="icon"]').href.replace(/\/favicon\.svg$/,"/gitbook-assets"),a=document.createElement("div");a.className="example-card-grid";for(const c of r.querySelectorAll("tbody tr")){const l=c.querySelectorAll("td"),i=l[2].querySelector("a"),s=new URL(i.href).pathname.split("/").filter(Boolean).pop(),o=document.createElement("a");o.className="example-card",o.href=i.href,o.innerHTML=`
+            <div class="example-card__media"><img src="${n}/more-examples/${s}.png" alt="" loading="lazy" /></div>
+            <div class="example-card__title">${l[0].innerHTML}</div>
+            <div class="example-card__description">${l[1].innerHTML}</div>
+            <span class="example-card__cta">Read example</span>
+          `,a.appendChild(o)}r.replaceWith(a)}</script> </body> </html>

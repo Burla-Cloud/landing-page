@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Examples | Burla</title><meta name="description" content="Real Burla workloads for ML, data pipelines, production IO, and scientific computing."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>.examples-catalog[data-astro-cid-ngolm6s5]{display:grid;gap:28px}
+</style>
+<link rel="stylesheet" href="/_astro/_slug_.COMOeaTV.css"></head> <body> <header class="site-header"> <div class="site-header__inner"> <a class="brand" href="/" aria-label="Burla home"> <span class="brand__mark" aria-hidden="true"> <img src="/logo_small.svg" alt=""> </span> <span class="brand__name">Burla</span> </a> <nav class="site-header__center" aria-label="Primary"> <a class="top-link" href="/docs/quickstart">Quickstart</a> <a class="top-link" href="/docs">Docs</a> <a class="top-link" href="/examples">Examples</a> </nav> <nav class="site-header__actions" aria-label="Account"> <a class="text-link text-link--button" href="https://login.burla.dev/">Sign in</a> <a class="btn btn--primary" href="https://login.burla.dev/">Try it now</a> </nav> </div> </header> <div class="page page--docs-nav page--with-outline page--examples"> <aside class="sidebar" aria-label="Documentation navigation"> <nav class="sidebar__inner"> <div class="nav-section"> <div class="nav-section__heading">Start here</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs"> Overview </a> </li><li> <a class="nav-item" href="/docs/quickstart"> Quickstart </a> </li><li> <a class="nav-item" href="/docs/api-reference"> API/CLI Reference </a> </li><li> <a class="nav-item" href="/docs/about"> About </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">Use Cases</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs/use-cases/process-thousands-of-files-quickly"> Process thousands of files quickly. </a> </li><li> <a class="nav-item" href="/docs/use-cases/process-one-giant-file-quickly"> Process one giant file quickly. </a> </li><li> <a class="nav-item" href="/docs/use-cases/process-data-in-your-database-quickly"> Process data in your database quickly. </a> </li><li> <a class="nav-item" href="/docs/use-cases/more-use-cases"> More use cases </a> </li><li> <a class="nav-item" href="/docs/use-cases/run-batch-inference-and-vector-embeddings"> Run batch inference and vector embeddings </a> </li><li> <a class="nav-item" href="/docs/use-cases/run-pipeline-stages-on-different-hardware"> Run pipeline stages on different hardware </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">How To</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs/how-to/read-and-write-gcs-files"> Read/Write Files to Cloud Storage. </a> </li><li> <a class="nav-item" href="/docs/how-to/choose-how-to-split-your-work"> Choose how to split your work </a> </li><li> <a class="nav-item" href="/docs/how-to/combine-many-results-files-into-one-map-reduce"> Combine many results/files into one. (Map-Reduce) </a> </li><li> <a class="nav-item" href="/docs/how-to/more-how-to-articles"> More how to articles </a> </li><li> <a class="nav-item" href="/docs/how-to/limit-parallelism-for-apis-databases-and-websites"> Limit parallelism for APIs, databases, and websites </a> </li><li> <a class="nav-item" href="/docs/how-to/use-custom-docker-images-and-gpus"> Use custom Docker images and GPUs </a> </li><li> <a class="nav-item" href="/docs/how-to/run-python-in-the-background"> Run jobs in the background. </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">Examples</div> <ul class="nav-list"> <li> <a class="nav-item nav-item--active" href="/examples"> All examples </a> </li><li> <a class="nav-item" href="/examples/process-2.4tb-of-parquet-files-in-76s"> Process 2.4TB of Parquet Files in 76s </a> </li><li> <a class="nav-item" href="/examples/parallel-hyperparameter-tuning"> Parallel Hyperparameter Tuning </a> </li><li> <a class="nav-item" href="/examples/multi-stage-genomic-pipeline"> Genomic Pipeline on 1,000 CPUs </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#ml-embeddings-and-search"> ML, embeddings, and search </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#full-corpus-analysis"> Full-corpus analysis </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#production-data-jobs"> Production data jobs </a> </li><li> <a class="nav-item" href="/demo-walkthroughs.md#scientific-and-geospatial-work"> Scientific and geospatial work </a> </li> </ul> </div><div class="nav-section"> <div class="nav-section__heading">Essays</div> <ul class="nav-list"> <li> <a class="nav-item" href="/docs/essays/the-experiment-you-dont-run"> The Question You Asked Is Not the Experiment You Ran </a> </li><li> <a class="nav-item" href="/docs/essays/stop-designing-the-cluster"> Stop Designing the Cluster </a> </li> </ul> </div> </nav> </aside> <main class="content"> <article class="prose"> <div class="prose__section-label">Examples</div> <h1 class="prose__page-title">Examples</h1>  <section class="examples-catalog" data-astro-cid-ngolm6s5>  <h2 id="ml-embeddings-and-search"><a class="heading-anchor" aria-label="Direct link to heading" href="#ml-embeddings-and-search"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>ML, embeddings, and search</h2>
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden="" data-card-target="" data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>GPU embeddings on A100s</strong></td>
+      <td>Embed 50,000 Wikipedia articles with a CUDA image, CPU download stage, GPU embedding stage, and shared vector artifacts.</td>
+      <td><a href="/examples/gpu-embedding-demo">gpu-embedding-demo.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Batch inference without serving</strong></td>
+      <td>Load a Hugging Face model once per worker and score Parquet batches without building an endpoint.</td>
+      <td><a href="/examples/ml-inference-batch">ml-inference-batch.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Embed the whole arXiv</strong></td>
+      <td>Cluster 2.7M abstracts and find isolated papers by running the embedding job at corpus scale.</td>
+      <td><a href="/examples/arxiv-fossils">arxiv-fossils.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Label-free visual search over the Met</strong></td>
+      <td>Fetch and embed Open Access museum images, then use FAISS to find visual matches without labels.</td>
+      <td><a href="/examples/met-weirdest-art">met-weirdest-art.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Multimodal Airbnb analysis</strong></td>
+      <td>Run listings, photos, CLIP, YOLOv8, reviews, and bootstrap confidence intervals across the public corpus.</td>
+      <td><a href="/examples/airbnb-burla">airbnb-burla.md</a></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="full-corpus-analysis"><a class="heading-anchor" aria-label="Direct link to heading" href="#full-corpus-analysis"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Full-corpus analysis</h2>
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden="" data-card-target="" data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>571M Amazon reviews</strong></td>
+      <td>Read 275 GB of JSONL with HTTP Range requests, deterministic scoring, and heap-based reducers.</td>
+      <td><a href="/examples/amazon-review-distiller">amazon-review-distiller.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>NYC taxi history</strong></td>
+      <td>Scan 2.76B taxi and FHV trips to find ghost, emergent, and recovered city zones.</td>
+      <td><a href="/examples/nyc-ghost-neighborhoods">nyc-ghost-neighborhoods.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>9.49M Flickr photos</strong></td>
+      <td>Reverse-geocode public photos and build country signatures from user-written tags.</td>
+      <td><a href="/examples/world-photo-index">world-photo-index.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>NOAA rain extremes</strong></td>
+      <td>Stream every yearly GHCN-Daily CSV, keep top heaps, and reduce station-level extremes.</td>
+      <td><a href="/examples/ghcn-rainiest-day">ghcn-rainiest-day.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>One million GitHub READMEs</strong></td>
+      <td>Export README Parquet from BigQuery, shard deterministic summarizers, and reduce category stats.</td>
+      <td><a href="/examples/github-repo-summarizer">github-repo-summarizer.md</a></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="production-data-jobs"><a class="heading-anchor" aria-label="Direct link to heading" href="#production-data-jobs"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Production data jobs</h2>
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden="" data-card-target="" data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>S3 to Postgres ETL</strong></td>
+      <td>Transform 10,000 gzipped JSON files while protecting Postgres with <code>max_parallelism</code>.</td>
+      <td><a href="/examples/python-etl-no-airflow">python-etl-no-airflow.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Millions of image resizes</strong></td>
+      <td>Chunk image keys, resize with Pillow, and stream progress as workers write outputs.</td>
+      <td><a href="/examples/image-dataset-resize">image-dataset-resize.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>One Parquet file per worker</strong></td>
+      <td>Compute per-file QA stats without starting Spark for a simple file-parallel job.</td>
+      <td><a href="/examples/parquet-parallel">parquet-parallel.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Pandas apply in parallel</strong></td>
+      <td>Partition a Parquet dataset and run ordinary pandas code on each worker.</td>
+      <td><a href="/examples/pandas-apply-parallel">pandas-apply-parallel.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Rate-limited API jobs</strong></td>
+      <td>Make millions of calls while encoding provider limits in chunk size, sleeps, and <code>max_parallelism</code>.</td>
+      <td><a href="/examples/rate-limited-api-requests">rate-limited-api-requests.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Bounded web scraping</strong></td>
+      <td>Scrape static HTML with retries, backoff, and a global concurrency cap.</td>
+      <td><a href="/examples/parallel-web-scraping">parallel-web-scraping.md</a></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="scientific-and-geospatial-work"><a class="heading-anchor" aria-label="Direct link to heading" href="#scientific-and-geospatial-work"><span class="heading-anchor__icon" aria-hidden="true">#</span></a>Scientific and geospatial work</h2>
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden="" data-card-target="" data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Genome alignment</strong></td>
+      <td>Run <code>bwa</code> and <code>samtools</code> in a custom image with one FASTQ pair per worker.</td>
+      <td><a href="/examples/bioinformatics-alignment">bioinformatics-alignment.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>GDAL raster processing</strong></td>
+      <td>Compute NDVI one Sentinel tile at a time with <code>rasterio</code> and shared outputs.</td>
+      <td><a href="/examples/gdal-raster-processing">gdal-raster-processing.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Billion-path Monte Carlo</strong></td>
+      <td>Return sums and squared sums from independent chunks, then reduce locally.</td>
+      <td><a href="/examples/monte-carlo-simulation">monte-carlo-simulation.md</a></td>
+    </tr>
+  </tbody>
+</table>  </section>  </article> </main> <aside class="outline" aria-label="On this page"><div class="outline__heading">On this page</div><ul class="outline__list"><li><a class="outline__link outline__link--h2" href="#ml-embeddings-and-search">ML, embeddings, and search</a></li><li><a class="outline__link outline__link--h2" href="#full-corpus-analysis">Full-corpus analysis</a></li><li><a class="outline__link outline__link--h2" href="#production-data-jobs">Production data jobs</a></li><li><a class="outline__link outline__link--h2" href="#scientific-and-geospatial-work">Scientific and geospatial work</a></li></ul></aside> </div> <script type="module">const t={primary:"rgb(95, 127, 138)",warning:"rgb(187, 92, 0)",text:"rgb(25, 30, 31)"},p=(r,e)=>{const n=document.createElement("span");return n.textContent=r,n.style.color=e,n};for(const r of document.querySelectorAll("pre.astro-code code .line > span")){const e=r.textContent??"",n=e===" list"?[[" ",t.text],["list",t.warning]]:e==="range"?[["range",t.primary]]:e===" my_function"?[[" ",t.text],["my_function",t.primary]]:e==="    print"?[["    ",t.text],["print",t.primary]]:e==="{x}"?[["{",t.warning],["x",t.primary],["}",t.warning]]:e==="remote_parallel_map"?[["remote_parallel_map",t.primary]]:e==="my_function"?[["my_function",t.primary]]:e===" my_inputs"?[[" my_inputs",t.primary]]:[];n.length&&r.replaceWith(...n.map(([a,c])=>p(a,c)))}for(const r of document.querySelectorAll("pre.astro-code")){if(r.querySelector(".code-copy"))continue;const e=document.createElement("button");e.className="code-copy",e.type="button",e.setAttribute("aria-label","Copy code"),e.innerHTML="Copy",e.addEventListener("click",async()=>{const n=r.querySelector("code");if(n)try{await navigator.clipboard.writeText(n.textContent??""),e.innerHTML="Copied",setTimeout(()=>e.innerHTML="Copy",1400)}catch{e.innerHTML="Error"}}),r.appendChild(e)}for(const r of document.querySelectorAll('table[data-view="cards"]')){const n=document.querySelector('link[rel="icon"]').href.replace(/\/favicon\.svg$/,"/gitbook-assets"),a=document.createElement("div");a.className="example-card-grid";for(const c of r.querySelectorAll("tbody tr")){const l=c.querySelectorAll("td"),i=l[2].querySelector("a"),s=new URL(i.href).pathname.split("/").filter(Boolean).pop(),o=document.createElement("a");o.className="example-card",o.href=i.href,o.innerHTML=`
+            <div class="example-card__media"><img src="${n}/more-examples/${s}.png" alt="" loading="lazy" /></div>
+            <div class="example-card__title">${l[0].innerHTML}</div>
+            <div class="example-card__description">${l[1].innerHTML}</div>
+            <span class="example-card__cta">Read example</span>
+          `,a.appendChild(o)}r.replaceWith(a)}</script> </body> </html>
