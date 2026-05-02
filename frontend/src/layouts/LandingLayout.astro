@@ -1,0 +1,80 @@
+---
+import { withBase } from "../utils/base";
+import "../styles/reset.css";
+import "../styles/landing.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    />
+  </head>
+  <body class="landing-shell">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="landing-header">
+      <div class="landing-header__inner">
+        <a class="landing-brand" href={withBase("/")} aria-label="Burla home">
+          <span class="landing-brand__mark" aria-hidden="true">
+            <img src={withBase("/logo_small.svg")} alt="" />
+          </span>
+          <span>Burla</span>
+        </a>
+
+        <nav class="landing-nav" aria-label="Primary">
+          <a href="#platform">Platform</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href={withBase("/docs")}>Docs</a>
+          <a href={withBase("/examples")}>Examples</a>
+        </nav>
+
+        <nav class="landing-actions" aria-label="Account">
+          <a class="landing-actions__signin" href="https://login.burla.dev/">Sign in</a>
+          <a class="landing-button landing-button--small landing-button--primary" href="https://login.burla.dev/">Try it now</a>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="landing-footer">
+      <div class="landing-footer__inner">
+        <a class="landing-brand landing-brand--footer" href={withBase("/")} aria-label="Burla home">
+          <span class="landing-brand__mark" aria-hidden="true">
+            <img src={withBase("/logo_small.svg")} alt="" />
+          </span>
+          <span>Burla</span>
+        </a>
+        <nav class="landing-footer__links" aria-label="Footer">
+          <a href={withBase("/docs/quickstart")}>Quickstart</a>
+          <a href={withBase("/docs")}>Docs</a>
+          <a href={withBase("/examples")}>Examples</a>
+          <a href="https://github.com/Burla-Cloud/burla">GitHub</a>
+          <a href="https://discord.gg/2EH9AyYBGg">Discord</a>
+          <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Colab</a>
+          <a href="https://cal.com/jakez/burla">Book a call</a>
+          <a href="mailto:jake@burla.dev">Email</a>
+        </nav>
+        <p class="landing-footer__meta">&copy; {currentYear} Burla. Scale Python without designing the cluster.</p>
+      </div>
+    </footer>
+  </body>
+</html>

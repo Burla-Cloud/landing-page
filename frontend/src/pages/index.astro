@@ -1,16 +1,430 @@
 ---
-import { getEntry, render } from "astro:content";
-import DocLayout from "../layouts/DocLayout.astro";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BadgeCheck,
+  BookOpen,
+  Box,
+  Check,
+  CircleDollarSign,
+  Cloud,
+  Container,
+  Copy,
+  Cpu,
+  ExternalLink,
+  FolderSync,
+  Gauge,
+  HardDrive,
+  LayoutDashboard,
+  Logs,
+  Mail,
+  MonitorCheck,
+  PackageCheck,
+  Rocket,
+  ServerCog,
+  ShieldCheck,
+  Terminal,
+  Workflow,
+  Zap,
+} from "@lucide/astro";
+import LandingLayout from "../layouts/LandingLayout.astro";
+import { withBase } from "../utils/base";
 
-const entry = await getEntry("docs", "README");
-if (!entry) throw new Error("Missing user-docs/README.md");
-const { Content } = await render(entry);
+const loginUrl = "https://login.burla.dev/";
+const githubUrl = "https://github.com/Burla-Cloud/burla";
+const discordUrl = "https://discord.gg/2EH9AyYBGg";
+const callUrl = "https://cal.com/jakez/burla";
+const colabUrl = "https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing";
+const quickstartUrl = withBase("/docs/quickstart#quickstart-self-hosted-runs-in-your-cloud");
+
+const asset = (name: string) => withBase(`/landing-assets/${name}`);
 ---
 
-<DocLayout
-  title="Home"
-  description="Burla is a high-performance parallel processing library for data-teams that iterate quickly. Scale Python across 1000 CPUs or GPUs in 1 second."
-  hideFirstHeading
+<LandingLayout
+  title="Burla | Scale Python across 1000 CPUs or GPUs in 1 second"
+  description="Burla is a Python package for abstracting hardware. Scale vector embeddings, inference, preprocessing, dynamic AI/ML pipelines, and more."
 >
-  <Content />
-</DocLayout>
+  <main class="landing-page" id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow"><Rocket aria-hidden="true" /> Python in. Cloud scale out.</p>
+          <h1 id="hero-title">Scale Python to 1,000 CPUs or GPUs in 1 second.</h1>
+          <p class="hero__lead">
+            Burla is a Python package for abstracting hardware. It makes cloud computing fast and simple.
+            Scale vector embeddings, inference, preprocessing, build dynamic AI/ML pipelines, and more.
+          </p>
+          <div class="hero__cta">
+            <a class="landing-button landing-button--primary" href={loginUrl}>
+              Try Burla for free
+              <ArrowRight aria-hidden="true" />
+            </a>
+            <a class="landing-button landing-button--secondary" href={withBase("/docs/quickstart")}>
+              Read the quickstart
+              <BookOpen aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__product" aria-label="Burla product preview">
+          <div class="code-card hero-code" data-code-card>
+            <div class="code-card__bar">
+              <span>Burla only has one function</span>
+              <button class="code-action" type="button" data-copy-code aria-label="Copy starter code">
+                <Copy aria-hidden="true" />
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code><span class="kw">from</span> burla <span class="kw">import</span> <span class="fn">remote_parallel_map</span>
+
+my_inputs = list(range(<span class="num">1000</span>))
+
+<span class="kw">def</span> <span class="fn">my_function</span>(x):
+    print(<span class="str">f"[#&#123;x&#125;] running on separate computer"</span>)
+
+<span class="fn">remote_parallel_map</span>(my_function, my_inputs)</code></pre>
+          </div>
+
+          <figure class="product-window product-window--media hero-terminal">
+            <div class="window-bar">
+              <span class="window-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span class="window-status">Live dashboard run</span>
+            </div>
+            <video
+              aria-label="Burla dashboard showing live progress and logs for a remote parallel run."
+              width="2208"
+              height="919"
+              poster={asset("dashboard-monitoring.webp")}
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+            >
+              <source src={asset("dashboard-monitoring.mp4")} type="video/mp4" />
+            </video>
+          </figure>
+
+          <div class="hero-signal hero-signal--scale">
+            <span>Scale event</span>
+            <strong>1,000 remote workers</strong>
+          </div>
+          <div class="hero-signal hero-signal--feedback">
+            <span>Local feedback</span>
+            <strong>logs and exceptions stream back</strong>
+          </div>
+        </div>
+
+        <div class="hero__metrics" aria-label="Burla scale metrics">
+          <div class="metric-card">
+            <strong>&lt;1s</strong>
+            <span>code starts running, even with thousands of machines</span>
+          </div>
+          <div class="metric-card">
+            <strong>10,000</strong>
+            <span>CPUs from a single function call</span>
+          </div>
+          <div class="metric-card">
+            <strong>GPU</strong>
+            <span>A100s and custom containers per function</span>
+          </div>
+          <div class="metric-card">
+            <strong>Local</strong>
+            <span>prints, exceptions, and feedback stream back to you</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="Burla product promises">
+      <div class="proof-strip__inner">
+        <div class="proof-item">
+          <span>Function call</span>
+          <strong>One API for cloud-scale Python.</strong>
+        </div>
+        <div class="proof-item">
+          <span>Runtime</span>
+          <strong>Change hardware mid-workload.</strong>
+        </div>
+        <div class="proof-item">
+          <span>Operations</span>
+          <strong>Cancel runs and filter logs in the UI.</strong>
+        </div>
+        <div class="proof-item">
+          <span>Deployment</span>
+          <strong>Self-hosted or managed.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section" id="platform" aria-labelledby="platform-title">
+      <div class="landing-section__inner">
+        <p class="section-kicker"><Workflow aria-hidden="true" /> Dynamic pipelines</p>
+        <h2 class="section-heading" id="platform-title">A better way to build scalable AI/ML data pipelines.</h2>
+        <p class="section-copy">
+          Burla can change containers, hardware, or fan out to thousands of machines mid-workload.
+          This makes it possible to create dynamic pipelines that decide hardware and scale at runtime.
+        </p>
+
+        <div class="pipeline-grid">
+          <div class="code-card" data-code-card>
+            <div class="code-card__bar">
+              <span>This code</span>
+              <button class="code-action" type="button" data-copy-code aria-label="Copy pipeline code">
+                <Copy aria-hidden="true" />
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre><code><span class="fn">remote_parallel_map</span>(process, [...], <span class="arg">image</span>=<span class="str">"osgeo/gdal:latest"</span>)
+<span class="fn">remote_parallel_map</span>(aggregate, [...], <span class="arg">func_cpu</span>=<span class="num">64</span>)
+<span class="fn">remote_parallel_map</span>(predict, [...], <span class="arg">func_gpu</span>=<span class="str">"A100"</span>)</code></pre>
+          </div>
+
+          <figure class="showcase-media">
+            <video
+              aria-label="Burla dynamic pipeline visualization with stages running on different hardware."
+              width="1600"
+              height="543"
+              poster={asset("dynamic-pipeline.webp")}
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+            >
+              <source src={asset("dynamic-pipeline.mp4")} type="video/mp4" />
+            </video>
+          </figure>
+        </div>
+
+        <div class="split-showcase">
+          <div class="showcase-copy">
+            <h3>Scale to 10,000 CPUs, thousands of GPUs, or any container.</h3>
+            <p>
+              Pipelines built with Burla are simpler, more maintainable, faster, and much easier to develop.
+              Use normal Python control flow, then choose containers and hardware at the function boundary.
+            </p>
+          </div>
+          <ul class="run-list">
+            <li><Container aria-hidden="true" /><span>Run code in any Docker container, public or private.</span></li>
+            <li><Cpu aria-hidden="true" /><span>Assign larger hardware to expensive functions and less to lighter ones.</span></li>
+            <li><Cloud aria-hidden="true" /><span>Fan out to thousands of machines at runtime without designing a cluster.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section landing-section--dark" aria-labelledby="dashboard-title">
+      <div class="landing-section__inner">
+        <div class="split-showcase">
+          <div class="showcase-copy">
+            <p class="section-kicker"><LayoutDashboard aria-hidden="true" /> Dashboard</p>
+            <h2 class="section-heading" id="dashboard-title">Monitor progress in the dashboard.</h2>
+            <p>
+              Cancel bad runs, filter logs to watch individual inputs, or monitor output files in the UI.
+              Remote development keeps the local feel, with the operational visibility teams need.
+            </p>
+            <ul class="run-list">
+              <li><Logs aria-hidden="true" /><span>Anything your function prints appears locally and inside the dashboard.</span></li>
+              <li><MonitorCheck aria-hidden="true" /><span>Exceptions are thrown locally, so failure feels like normal Python.</span></li>
+              <li><FolderSync aria-hidden="true" /><span>Packages and local modules are cloned quickly on all remote machines.</span></li>
+            </ul>
+          </div>
+          <figure class="showcase-media">
+            <video
+              aria-label="Burla dashboard showing logs and job progress for a remote parallel run."
+              width="2208"
+              height="919"
+              poster={asset("dashboard-monitoring.webp")}
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="metadata"
+            >
+              <source src={asset("dashboard-monitoring.mp4")} type="video/mp4" />
+            </video>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section landing-section--tint" id="how-it-works" aria-labelledby="how-title">
+      <div class="landing-section__inner">
+        <p class="section-kicker"><Terminal aria-hidden="true" /> How it works</p>
+        <h2 class="section-heading" id="how-title">With Burla, running code in the cloud feels the same as running code locally.</h2>
+        <p class="section-copy">
+          When a Python function is run using <code>remote_parallel_map</code>, code starts running in under one second,
+          even with millions of inputs or thousands of machines.
+        </p>
+
+        <div class="code-card" data-code-card>
+          <div class="code-card__bar">
+            <span>Return values come back like normal Python</span>
+            <button class="code-action" type="button" data-copy-code aria-label="Copy return value code">
+              <Copy aria-hidden="true" />
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre><code>return_values = <span class="fn">remote_parallel_map</span>(my_function, my_inputs)</code></pre>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <PackageCheck class="feature-card__icon" aria-hidden="true" />
+            <h3>Automatic package sync</h3>
+            <p>Burla automatically and very quickly clones your Python packages on every remote machine where code is executed.</p>
+          </article>
+          <article class="feature-card">
+            <Box class="feature-card__icon" aria-hidden="true" />
+            <h3>Custom containers</h3>
+            <p>Easily run code in any Docker container. Public or private, just paste an image URI in the settings, then hit start.</p>
+          </article>
+          <article class="feature-card">
+            <HardDrive class="feature-card__icon" aria-hidden="true" />
+            <h3>Network filesystem</h3>
+            <p>Need to get big data into or out of the cluster? Burla automatically mounts a cloud storage bucket to a folder in every container.</p>
+          </article>
+          <article class="feature-card">
+            <ServerCog class="feature-card__icon" aria-hidden="true" />
+            <h3>Variable hardware per function</h3>
+            <p>The <code>func_cpu</code> and <code>func_ram</code> args make it possible to assign big hardware to some functions, and less to others.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section" id="pricing" aria-labelledby="pricing-title">
+      <div class="landing-section__inner">
+        <p class="section-kicker"><CircleDollarSign aria-hidden="true" /> Pricing</p>
+        <h2 class="section-heading" id="pricing-title">Free for hobbyists. Compute prices the same as Google Cloud.</h2>
+        <p class="section-copy">
+          Choose self-hosted in your cloud or managed in Burla's cloud. Enterprise users are billed the same way across both options.
+        </p>
+
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <span class="pricing-card__label"><ShieldCheck aria-hidden="true" /> Self-hosted</span>
+            <h3>In your cloud</h3>
+            <div class="pricing-card__price">$100 <span>/ month per Enterprise user</span></div>
+            <p>Deploy Burla's self-hosted web service with one command and keep compute inside your own cloud.</p>
+            <ul>
+              <li><Check aria-hidden="true" /><span>Free for all non-commercial use.</span></li>
+              <li><Check aria-hidden="true" /><span>Run <code>burla install</code> to deploy the self-hosted service.</span></li>
+            </ul>
+          </article>
+
+          <article class="pricing-card">
+            <span class="pricing-card__label"><Gauge aria-hidden="true" /> Managed</span>
+            <h3>In Burla's cloud</h3>
+            <div class="pricing-card__price">$100 <span>/ month per Enterprise user</span></div>
+            <p>Start quickly with Burla-managed infrastructure, free credits for qualified users, and transparent compute pricing.</p>
+            <ul>
+              <li><Check aria-hidden="true" /><span>100% identical pricing to <a class="pricing-card__link" href="https://cloud.google.com/pricing">Google Cloud</a>.</span></li>
+              <li><Check aria-hidden="true" /><span>$500 in free credits for qualified users.</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-section landing-section--tint" id="getting-started" aria-labelledby="start-title">
+      <div class="landing-section__inner">
+        <p class="section-kicker"><Zap aria-hidden="true" /> Getting started</p>
+        <h2 class="section-heading" id="start-title">Self-host with one command, or try the 1,000-CPU quickstart in 2 minutes.</h2>
+
+        <div class="start-grid">
+          <article class="start-card">
+            <div>
+              <Terminal class="start-card__icon" aria-hidden="true" />
+              <h3>Self-host with one command</h3>
+              <p>
+                Run <code>burla install</code> to deploy our self-hosted web service.
+                Learn more about permissions and installation in the getting started guide.
+              </p>
+            </div>
+            <a class="start-card__cta" href={quickstartUrl}>
+              Open self-hosted guide
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+          </article>
+
+          <article class="start-card">
+            <div>
+              <BadgeCheck class="start-card__icon" aria-hidden="true" />
+              <h3>Try the 1,000-CPU quickstart</h3>
+              <p>
+                Sign in using your Google or Microsoft account, then run the quickstart in this Google Colab notebook.
+                It is free and takes 2 minutes.
+              </p>
+            </div>
+            <a class="start-card__cta" href={colabUrl}>
+              Open Google Colab
+              <ExternalLink aria-hidden="true" />
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="final-title">
+      <div class="final-cta__inner">
+        <h2 id="final-title">Run Python on real cloud scale without slowing down your iteration loop.</h2>
+        <p>
+          Questions? Schedule a call, email jake@burla.dev, or try the quickstart.
+          We're always happy to talk.
+        </p>
+        <div class="final-cta__actions">
+          <a class="landing-button landing-button--primary" href={loginUrl}>
+            Try it now
+            <ArrowRight aria-hidden="true" />
+          </a>
+          <a class="landing-button landing-button--secondary" href={callUrl}>
+            Schedule a call
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a class="landing-button landing-button--secondary" href="mailto:jake@burla.dev">
+            Email Jake
+            <Mail aria-hidden="true" />
+          </a>
+          <a class="landing-button landing-button--secondary" href={githubUrl}>
+            View GitHub
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a class="landing-button landing-button--secondary" href={discordUrl}>
+            Join Discord
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (prefersReducedMotion.matches) {
+      for (const video of document.querySelectorAll<HTMLVideoElement>("video[autoplay]")) {
+        video.pause();
+        video.removeAttribute("autoplay");
+      }
+    }
+
+    for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy-code]")) {
+      button.addEventListener("click", async () => {
+        const card = button.closest<HTMLElement>("[data-code-card]");
+        const code = card?.querySelector<HTMLElement>("code")?.textContent ?? "";
+        const label = button.querySelector("span");
+        if (!label) return;
+
+        try {
+          await navigator.clipboard.writeText(code.trim());
+          label.textContent = "Copied";
+          setTimeout(() => (label.textContent = "Copy"), 1400);
+        } catch {
+          label.textContent = "Error";
+          setTimeout(() => (label.textContent = "Copy"), 1400);
+        }
+      });
+    }
+  </script>
+</LandingLayout>
